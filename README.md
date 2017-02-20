@@ -8,3 +8,22 @@ So this time I created New Version with Electron for OSX and Windows.
 
 This application assumes that it works on two screens. 
 Display window and operation window are displayed and constructed so that numerical change in the operation window is immediately reflected in the display window.
+
+////files////
+
+--main.JS
+main.JS
+
+--operation Window
+opeWin.html
+opeWin.JS
+
+--display Window
+disWin.html
+disWin.JS
+
+--CSS (opeWin,disWin)
+opeWin.CSS
+
+--package.json
+package.json
