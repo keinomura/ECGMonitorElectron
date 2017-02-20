@@ -1,0 +1,17 @@
+{
+  "name": "ecgmonitor",
+  "version": "0.5.0",
+  "productName": "ECG Monitor app",
+  "main": "main.js",
+  "description": "ecg monitor for ISLS. electron ver.",
+  "license": "Kei Nom",
+  "author": {
+    "name": "Kei Nom"
+  },
+  "devDependencies": {
+    "electron": "^1.4.15",
+    "electron-builder": "^13.7.0",
+    "nopt": "latest",
+    "npm": "latest"
+  }
+}
