@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<head>
+
+<title>opewindow</title>
+<script type="text/javascript" src="opeWin.js"></script>
+<link rel="stylesheet" type="text/css" href="opeWin.css">
+<script>
+const remote = require('electron').remote;
+const Menu = remote.Menu;
+const MenuItem = remote.MenuItem;
+
+var menu = new Menu();
+menu.append(new MenuItem({ label: 'MenuItem1', click: function() { console.log('item 1 clicked'); } }));
+menu.append(new MenuItem({ type: 'separator' }));
+menu.append(new MenuItem({ label: 'MenuItem2', type: 'checkbox', checked: true }));
+
+window.addEventListener('contextmenu', function (e) {
+  e.preventDefault();
+  menu.popup(remote.getCurrentWindow());
+}, false);
+</script>
+</head>
+
+<body>
+
+<div class='miniDisplay'>
+  <div class="monitorHeader" style="font-size: 2vh;">ECG monitor for ISLS</div>
+
+  <div class="monitorPanel">
+    <div class="waveMonitor">
+      <div class="canvasWrap">
+        <canvas class='canvas' id="hRCanvas"></canvas>
+      </div>
+      <div class="canvasWrap">
+        <canvas class='canvas sPO2color' id="spO2Canvas" ></canvas>
+      </div>
+      <div class="canvasWrap">
+        <canvas class='canvas' id="respCanvas"></canvas>
+      </div>
+    </div>
+    <div class="volumePanel">
+      <!--
+      Small Monitor elements
+        -->
+      <div class='eachValueBox'>
+        <div class='yohaku' style="height: 10px"></div>
+        <div id='hRsmall' class='smallMonitorValue hRcolor'>--</div>
+        <div class='valueText hRcolor textValueTitle'>ECG</div>
+        <div class='valueText hRcolor subtextValueTitle'>bpm</div> 
+      </div>
+      <div class='eachValueBox'>
+        <div class='yohaku' style="height: 10px"></div>
+        <div id='bPsmall' class='smallMonitorValue bPcolor' style="font-size: 2.5vh;">--- / ---</div>
+        <div class='valueText bPcolor textValueTitle'>NIBP</div>
+        <div class='valueText bPcolor subtextValueTitle'></div> 
+      </div>
+      <div class='eachValueBox'>
+        <div class='yohaku' style="height: 10px"></div>
+        <div id='spO2small' class='smallMonitorValue sPO2color'>--</div>
+        <div class='valueText sPO2color textValueTitle'>SpO2</div>
+        <div class='valueText sPO2color subtextValueTitle'>%</div> 
+      </div>
+      <div class='eachValueBox'>
+        <div class='yohaku' style="height: 10px"></div>
+        <div id='rRsmall' class='smallMonitorValue respcolor'>--</div>
+        <div class='valueText respcolor textValueTitle'>Resp</div>
+        <div class='valueText respcolor subtextValueTitle'>rpm</div> 
+      </div> 
+    </div>
+  </div>
+
+  <div class="monitorFooter" style="font-size: 1vh;">
+    <div class="copyright" style="font-size: 1vh;margin:10px;text-align: right;"> (c) 2017 Kei Nom</div>
+  </div>
+
+</div>
+
+
+  <div class='volumeBar' id='volumeBar'>
+    <input id='volControl' type="range" orient="vertical" min="0" max="1.0" value="1.0" step="0.1" style="position:absolute; left: 430px;top: 150px;"/> 
+  <div style="text-align: center;margin-top: 210px;color: lightgray;">Vol</div>
+  </div>
+
+<!--
+HR elements
+  -->
+<div class="controlerPanel">
+
+
+  <div class="valBar verticalMiddle">
+
+    <div class="hRBox valBox">
+      <div id='hR' hidden>95</div>
+      <div class='minmaxValue'>30</div>
+      <div class="sliderBar">	
+        <input id="hRSlider" type="range" min="30" max="140" value="95" step="1" oninput="changeSliderBox(this);"/>
+      </div>
+      <div class="minmaxValue">140</div>
+      <div class='valueChangeBox'>   
+        <input type="number" id="hRSliderSide" value="95" min="30" max="140" oninput="changeSliderBox(this);" style="width: 35px"/>
+      </div>
+      <div class="optionVal" id="optionalValaf">af</div>
+      <div class="buttonBox">
+        <label class="switch">
+          <input type="checkbox" id="hRcheck" onclick="hRRhythmChangeSW()">
+          <div class="slider round"></div>
+        </label>
+      </div>
+    </div>
+
+    <!--
+    BP elements
+      -->
+    <div class="bPbox valBox">
+      <div class='minmaxValue'>60</div>
+      <div class="sliderBar">	
+        <input id="bPSlider" type="range" min="60" max="250" value="95" step="1" oninput="changeSliderBox(this);"/>
+      </div>
+      <div class="minmaxValue">250</div>
+
+      <div class="inputBoxDiv">
+        <input class='inputBox' type="text" id='sBP' value='100'>
+        <input class='inputBox' type="text" id='dBP' value='60'>
+
+      </div>
+
+      <div class="buttonBox">
+        <input class='btn' type="button" id="mesureBP" value='mesure' onclick="mesureBP();">
+      </div>
+    </div>
+
+    <!--
+    SpO2 elements
+      -->
+    <div class="spO2Box valBox">
+      <div id='spO2' hidden>95</div>
+      <div class='minmaxValue'>70</div>
+      <div class="sliderBar">
+        <input id="spO2Slider" type="range" min="70" max="100" value="95" step="1" oninput="changeSliderBox(this);"/>
+      </div>
+      <div class="minmaxValue">100</div>
+      <div class="valueChangeBox">
+        <input type="number" id="spO2SliderSide" value="95" min="70" max="100" onchange="changeSliderBox(this);" style="width: 35px"/>
+      </div>
+    </div>
+
+
+    <div class="rRBox valBox">
+      <div id='rR' hidden>10</div>
+      <div class='minmaxValue'>4</div>
+      <div class="sliderBar">	
+        <input id="rRSlider" type="range" min="4" max="30" value="10" step="1" oninput="changeSliderBox(this);"/>
+      </div>
+      <div class="minmaxValue">30</div>
+      <div class="valueChangeBox">
+        <input type="number" id="rRSliderSide" value="10" min="4" max="30" onchange="changeSliderBox(this);" style="width: 35px"/>
+      </div>
+      <div class="optionVal" id="optionalValrR">ataxic</div>
+      <div class="buttonBox">
+        <label class="switch">
+          <input type="checkbox" id="rRcheck" onclick="rRRhythmChangeSW()">
+          <div class="slider round"></div>
+        </label>
+      </div>
+    </div>
+
+    <div class='startButtonBox' style="margin: 30px; color: lightgray;font-size: 10pt;"> 
+      Power
+    <label class="switch">
+      <input type="checkbox" id="onSW" onclick="ring()">
+      <div class="slider"></div>
+    </label>
+    
+    </div>
+  </div>
+  
+</body>
+</html>
