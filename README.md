@@ -27,3 +27,12 @@ opeWin.CSS
 
 --package.json
 package.json
+
+
+for Ver.2
+main topic -- be able to switch new vital signs by clicking button.
+changing vital signs for a few seconds.
+
+bug fix -- not destroy wave shapes when change values
+
+inport and export vital signs
