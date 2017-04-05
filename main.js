@@ -147,22 +147,7 @@ ipcMain.on('changeToNextValue', (event, arg) => {
   console.log('yes');
 });
 
-ipcMain.on('back', (event, arg) => {
-  //sub_Win.webContents.send('back', arg);
-  console.log('yesback!');
-});
 
-// ipc dataWin --> opeWin
-
-/*
-ipcMain.on('changeToNextValue', (event, arg) => {
-  console.log('next data was received!');
-  console.log(arg);
-//main_Win.webContents.send('changeToNextValue', arg);
-sub_Win.webContents.send('changeToNextValue', arg);
-console.log('fin');
-});
-*/
 
 
 

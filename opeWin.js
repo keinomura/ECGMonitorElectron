@@ -604,4 +604,7 @@ ipcRenderer.on('changeToNextValue', (event, arg) =>{
   document.getElementById('rRSliderSide').value = arg[3];
   document.getElementById('hRSlider').value = arg[2];
   document.getElementById('rRSlider').value = arg[3];
+
+  //functionで書くこと。
+  #problem
 });

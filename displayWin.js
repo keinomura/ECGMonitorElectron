@@ -498,9 +498,3 @@ ipcRenderer.on('bPMesure', (event, arg) =>{
   dBP = arg[1];
   mesureBP();
 });
-
-ipcRenderer.on('changeToNextValue', (event, arg) =>{
-  ipcRenderer.send('back', arg);
-console.log('dispWin get!');
-console.log(arg);
-});
