@@ -552,6 +552,12 @@ function optionColorChange(targetId, aBool){
 
 
 /* ---------- IPC ---------- */
+
+// ipc opeWin --> displayWindow
+
+//var switchOn = false, sBP, dBP, hR, rR, spO2, afOn, respAtaxiaOn;
+
+
 function switchOnIPC(){
   var switchOn = document.getElementById('onSW').checked;
   var sBP = document.getElementById('sBP').value;
@@ -588,3 +594,14 @@ function bPMesureIPC(arg){
   //arg = [sBP, dBP]
   ipcRenderer.send('bPMesure', arg);
 }
+
+// ipc dataWin -- opeWin
+
+ipcRenderer.on('changeToNextValue', (event, arg) =>{
+  document.getElementById('sBP').value = arg[0];
+  document.getElementById('dBP').value = arg[1];
+  document.getElementById('hRSliderSide').value = arg[2];
+  document.getElementById('rRSliderSide').value = arg[3];
+  document.getElementById('hRSlider').value = arg[2];
+  document.getElementById('rRSlider').value = arg[3];
+});

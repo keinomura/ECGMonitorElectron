@@ -59,6 +59,34 @@ function createsubWindow () {
   })
 }
 
+let data_Win;
+
+function createdataWindow () {
+  if (data_Win == null) {
+    // create data Window
+    data_Win = new BrowserWindow({width: 100, height: 100})
+
+  // set data window URL
+    data_Win.loadURL(url.format({
+      pathname: path.join(__dirname, 'dataWin.html'),
+      protocol: 'file:',
+      slashes: true
+    }))
+  } else {
+    data_Win.show();
+  }
+
+
+
+// devTool
+  //sub_Win.webContents.openDevTools();
+ 
+  // when sub window is closed
+  data_Win.on('closed', function () {
+    data_Win = null
+  })
+}
+
 
  
 //  when finished init
@@ -66,6 +94,7 @@ function createsubWindow () {
 app.on('ready', () => {
   createWindow();
   createsubWindow();
+  createdataWindow();
 });
 
 // All window were closed
@@ -88,9 +117,11 @@ app.on('activate', function () {
 //ipc
 ////////////////////
 
+// ipc opeWin --> dispWin
+
 ipcMain.on('switchOntoMain', (event, arg) =>{
-console.log('received!');
-console.log(arg);
+//console.log('received!');
+//console.log(arg);
 sub_Win.webContents.send('switch-on', arg);
 
 });
@@ -109,7 +140,36 @@ ipcMain.on('valChange', (event, arg) => {
 
 ipcMain.on('bPMesure', (event, arg) => {
   sub_Win.webContents.send('bPMesure', arg);
-})
+});
+
+ipcMain.on('changeToNextValue', (event, arg) => {
+  main_Win.webContents.send('changeToNextValue', arg);
+  console.log('yes');
+});
+
+ipcMain.on('back', (event, arg) => {
+  //sub_Win.webContents.send('back', arg);
+  console.log('yesback!');
+});
+
+// ipc dataWin --> opeWin
+
+/*
+ipcMain.on('changeToNextValue', (event, arg) => {
+  console.log('next data was received!');
+  console.log(arg);
+//main_Win.webContents.send('changeToNextValue', arg);
+sub_Win.webContents.send('changeToNextValue', arg);
+console.log('fin');
+});
+*/
+
+
+
+
+
+
+
 
 
 //////////////////
