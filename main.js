@@ -11,7 +11,7 @@ let main_Win;
 function createWindow () {
   if (main_Win == null){
   // create new main Window
-  main_Win = new BrowserWindow({width: 500, height: 700})
+  main_Win = new BrowserWindow({width: 1000, height: 700})
 
   // set main window URL
   main_Win.loadURL(url.format({
@@ -23,7 +23,7 @@ function createWindow () {
     main_Win.show();
   }
   // devTool
-  //main_Win.webContents.openDevTools();
+  main_Win.webContents.openDevTools();
  
   // when main window is closed
   main_Win.on('closed', function () {
@@ -59,6 +59,34 @@ function createsubWindow () {
   })
 }
 
+let data_Win;
+
+function createdataWindow () {
+  if (data_Win == null) {
+    // create data Window
+    data_Win = new BrowserWindow({width: 300, height: 300})
+
+  // set data window URL
+    data_Win.loadURL(url.format({
+      pathname: path.join(__dirname, 'dataWin.html'),
+      protocol: 'file:',
+      slashes: true
+    }))
+  } else {
+    data_Win.show();
+  }
+
+
+
+// devTool
+  //sub_Win.webContents.openDevTools();
+ 
+  // when sub window is closed
+  data_Win.on('closed', function () {
+    data_Win = null
+  })
+}
+
 
  
 //  when finished init
@@ -66,6 +94,7 @@ function createsubWindow () {
 app.on('ready', () => {
   createWindow();
   createsubWindow();
+  createdataWindow();
 });
 
 // All window were closed
@@ -88,9 +117,11 @@ app.on('activate', function () {
 //ipc
 ////////////////////
 
+// ipc opeWin --> dispWin
+
 ipcMain.on('switchOntoMain', (event, arg) =>{
-console.log('received!');
-console.log(arg);
+//console.log('received!');
+//console.log(arg);
 sub_Win.webContents.send('switch-on', arg);
 
 });
@@ -109,7 +140,23 @@ ipcMain.on('valChange', (event, arg) => {
 
 ipcMain.on('bPMesure', (event, arg) => {
   sub_Win.webContents.send('bPMesure', arg);
-})
+});
+
+ipcMain.on('changeToNextValue', (event, arg) => {
+  main_Win.webContents.send('changeToNextValue', arg);
+  console.log('yes');
+});
+
+ipcMain.on('kickback', (event, arg) => {
+  console.log(arg);
+});
+
+
+
+
+
+
+
 
 
 //////////////////

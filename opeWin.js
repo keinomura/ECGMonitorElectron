@@ -550,8 +550,87 @@ function optionColorChange(targetId, aBool){
  target = null;
 }
 
+function createArrDataPerSec(arg){
+  //arg = [sBP, dBP, hR, spO2, rR]
+  var finHR = arg[2] * 1;
+  var finSpO2 = arg[3] * 1;
+  var finRR = arg[4] * 1;
+
+  var stHR = document.getElementById('hRSliderSide').value * 1;
+  var stSpO2 = document.getElementById('spO2SliderSide').value * 1;
+  var stRR = document.getElementById('rRSliderSide').value * 1;
+
+  var changeDurTime = 10;
+
+  var datePerSec = [];
+  for(i=0; i < changeDurTime; i++){
+    var cHR = parseInt((i+1)/changeDurTime * (finHR - stHR)) + stHR;
+    var cSpO2 = parseInt((i+1)/changeDurTime * (finSpO2 - stSpO2)) + stSpO2;
+    var cRR = parseInt((i+1)/changeDurTime * (finRR - stRR)) + stRR;
+
+    datePerSec.push([cHR, cSpO2, cRR]);  
+  }
+
+  return datePerSec;
+}
+
+var cSec, toid=null;
+function changeValSlowly (arg){
+  console.log('im in');
+  cSec = 0;
+  var cArg = createArrDataPerSec(arg);
+
+  //setTimeout(changeVal(cArg, cSec), 1000);
+
+  var argLength = cArg.length;
+  console.log('arg.length is', argLength);
+  console.log('arg is', cArg);
+  console.log('cSec is', cSec);
+  //var aSec = cSec * 1;
+
+  var changeVal = function(){
+    //console.log('im in-in');
+    console.log('inner cSec is', cSec);
+
+    //var arg = cArg;
+    if (cSec * 1 < argLength){
+      //document.getElementById('sBP').value = arg[0];
+      //document.getElementById('dBP').value = arg[1];
+      
+      console.log('cArg is', cArg);
+      console.log(cArg[0][0]);
+      console.log('in-in-in');
+      
+      document.getElementById('hRSliderSide').value = cArg[cSec][0];
+      document.getElementById('spO2SliderSide').value = cArg[cSec][1];
+      document.getElementById('rRSliderSide').value = cArg[cSec][2];
+      document.getElementById('hRSlider').value = cArg[cSec][0];
+      document.getElementById('spO2Slider').value = cArg[cSec][1];
+      document.getElementById('rRSlider').value = cArg[cSec][2];
+      changeSliderBox(document.getElementById('spO2SliderSide'));
+      changeSliderBox(document.getElementById('hRSliderSide'));
+      changeSliderBox(document.getElementById('rRSliderSide'));
+
+
+
+      cSec++;  
+      //setTimeout(changeVal(arg, cSec), 1000);
+      //var id = setTimeout(changeVal(arg, cSec), 1000);
+      //id;
+      setTimeout(changeVal, 1000);
+    }
+  }
+  changeVal();
+
+}
 
 /* ---------- IPC ---------- */
+
+// ipc opeWin --> displayWindow
+
+//var switchOn = false, sBP, dBP, hR, rR, spO2, afOn, respAtaxiaOn;
+
+
 function switchOnIPC(){
   var switchOn = document.getElementById('onSW').checked;
   var sBP = document.getElementById('sBP').value;
@@ -588,3 +667,23 @@ function bPMesureIPC(arg){
   //arg = [sBP, dBP]
   ipcRenderer.send('bPMesure', arg);
 }
+
+// ipc dataWin -- opeWin
+
+ipcRenderer.on('changeToNextValue', (event, arg) =>{
+  /*
+  document.getElementById('sBP').value = arg[0];
+  document.getElementById('dBP').value = arg[1];
+  document.getElementById('hRSliderSide').value = arg[2];
+  document.getElementById('rRSliderSide').value = arg[3];
+  document.getElementById('hRSlider').value = arg[2];
+  document.getElementById('rRSlider').value = arg[3];
+
+  //functionで書くこと。
+  #problem
+  */
+  console.log('recieved!');
+  changeValSlowly (arg);
+var anArry = createArrDataPerSec (arg);
+ipcRenderer.send('kickback', anArry);
+});
