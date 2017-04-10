@@ -7,9 +7,9 @@ function goButton(){
   var dBP = document.getElementById('dBP').value;
   var hR = document.getElementById('hR').value;
   var rR = document.getElementById('rR').value;
-  //var spO2 = document.getElementById('spO2').innerText;
+  var spO2 = document.getElementById('spO2').value;
 
-  var argArry = [sBP,dBP,hR,rR];
+  var argArry = [sBP,dBP,hR,spO2,rR];
 
   sendValuesToOpeWin(argArry);
 }
