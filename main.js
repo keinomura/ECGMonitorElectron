@@ -159,8 +159,8 @@ ipcMain.on('kickback', (event, arg) => {
 
 
 
-//////////////////
-// アプリケーションメニュー設定
+////////////////////
+// application menu
 
 
 app.on('ready', function() {

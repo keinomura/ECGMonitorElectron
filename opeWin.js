@@ -8,19 +8,18 @@ function mesureBP(){
     var sBP=document.getElementById('sBP').value;
     var dBP=document.getElementById('dBP').value;
 
-    bPMesureIPC([sBP, dBP]);
+    bPMesureAtDispWin([sBP, dBP]);
 
 ///// BP display Blink /////
     var c = 0;
     var timerID = setInterval(function(){
       setTimeout(function(){
         displayVal('bP', '--- / ---');
-        }, 500);
+      }, 500);
 
-        setTimeout(function(){
+      setTimeout(function(){
           displayVal('bP', '');
-
-        }, 999);
+      }, 999);
 
       c ++;
 
@@ -42,8 +41,8 @@ function mesureBP(){
 
 /* ---------- Value change with Slider & Box ---------- */
 function changeSliderBox(aDom){
-  var itemName = aDom.id.split("Slider", 1);
-  var mainItem = itemName[0];
+  var itemName = aDom.id.split("Slider", 1);//ex "BPSliderSide"->["BP", "Side"]
+  var mainItem = itemName[0];//ex "BP"
   var smallMonitorItem = mainItem + 'small';
   var theOther;
 
@@ -87,71 +86,80 @@ var timeoutid2 = null; //timeoutId for resp display
 var switchOn = false;
 
 function ring(){  //start drawing, ringing, 
-//=> main.js => displayWindow
+  //=> main.js => displayWindow
   switchOnIPC();
 
-// clearTimeout
+  // clearTimeout
   clearTimeout(timeoutid);
   clearTimeout(timeoutid2);
 
-///// start waves drawing /////
+  ///// start waves drawing /////
   window.requestAnimationFrame(draw); //ecg
   window.requestAnimationFrame(spO2draw);
   window.requestAnimationFrame(respdraw);
 
-  var checkedValue = null; 
-  checkedValue = document.getElementById('onSW').checked;
-  switchOn = (checkedValue);
-  checkedValue = null;
+  //var checkedValue = null; 
+  //checkedValue = document.getElementById('onSW').checked;
+  //switchOn = (checkedValue);
+  switchOn = document.getElementById('onSW').checked;
+  //checkedValue = null;
 
-///// OFF waves drawing /////
+///// Change monitor values when SW OFF/////
   if (!switchOn){
-    displayVal('bP', '--- / ---');
+    //displayVal('bP', '--- / ---');
     var aAry = ['hR', 'spO2', 'bP', 'rR'];
     for (i=0; i<aAry.length; i++){
     displayVal(aAry[i], '--'); }
   }
 
 ///// create hR rhythms and sound play /////
-  var hRArray=[]; //get hR average
+  var hRArray=[]; //arry to get hR average
   var ringfunc = function(){
-    fire(); //ecg p-qrs-t wave start!
+    //start drawing ecg wave
+    fire();
 
-  //sound play
-    var dinum = document.getElementById('spO2').innerText;
-    //not to delay, read wav files directry
-    var dinumplus = "wav/" + dinum + ".wav";
-    var sound = new Audio(dinumplus);
-    sound.volume = document.getElementById('volControl').value;
-    sound.play();
+    //Beep ECG Sound By SpO2 value
+      var beepBySpO2 = function(){
+        var dinum = document.getElementById('spO2').innerText;
+        //not to delay, read wav files directry
+        var dinumplus = "wav/" + dinum + ".wav";
+        var sound = new Audio(dinumplus);
+        sound.volume = document.getElementById('volControl').value;
+        sound.play();
 
-    dinum = null;
-    dinumplus = null;
-    sound = null;
-    //document.getElementById(dinum).play();  //this handler makes some delay
+        dinum = null;
+        dinumplus = null;
+        sound = null;
+        //document.getElementById(dinum).play();  //this handler makes some delay
+      }
+    beepBySpO2();
 
-  //create next hR rhythm time
-    var calhR;
-    var ahRtext = document.getElementById('hRSlider').value;
-    if (afOn){
-      calhR = ahRtext * 1 - 10 + Math.random() * 20;  
-    } else {
-      calhR = ahRtext * 1;
-    }
-   ahRtext = null;
-   
-  // display each last 3 hR average
-    hRArray.push(calhR);
+    //create HR rhythms
+      function calcHR(){
+        var ahRtext = document.getElementById('hRSlider').value;
+        if (afOn){
+          return ahRtext * 1 - 10 + Math.random() * 20;  
+        } else {
+          return ahRtext * 1;
+        }
+      }  
+    var calhR = calcHR();
 
-    if (hRArray.length == 3){
-      var aveHR = (hRArray[0] + hRArray[1] + hRArray[2])/3;
-      displayVal('hR', parseInt(aveHR));
-      aveHR = null;
-      var tempspO2 = document.getElementById('spO2').innerText;
-      displayVal('spO2', tempspO2);
-      hRArray.length = 0;
-      tempspO2 = null;
-    }
+    //display each last 3 hR average
+      var displayHRAve = function () {
+        hRArray.push(calhR);
+
+        if (hRArray.length == 3){
+          var aveHR = (hRArray[0] + hRArray[1] + hRArray[2])/3;
+          displayVal('hR', parseInt(aveHR));
+          aveHR = null;
+          var tempspO2 = document.getElementById('spO2').innerText;
+          displayVal('spO2', tempspO2);
+          hRArray.length = 0;
+          tempspO2 = null;
+        }
+      }
+    displayHRAve();
 
     var hRtime = (60000 / calhR); // time to next fire()
     calhR = null;
@@ -165,26 +173,30 @@ function ring(){  //start drawing, ringing,
     respfire(); //resp wave start!
   
   //create resp rhythm
-    var aRR;
-    var aRRVal = document.getElementById('rRSlider').value;
+      function calcRR (){
+        var aRRVal = document.getElementById('rRSlider').value;
+          if (respAtaxiaOn){
+            respataxicfire();
+            return aRRVal * 1 - 2 + Math.random() * 4;
+          } else {
+            return aRRVal * 1;
+          }
+      }
+    var aRR = calcRR();
 
-    if (respAtaxiaOn){
-      aRR = aRRVal * 1 - 2 + Math.random() * 4;
-      respataxicfire();
-    } else {
-      aRR = aRRVal * 1;
-    }
+  // display average hR
+      var displayRRAve = function (){
+        rRArray.push(aRR);
 
-    aRRVal = null;
+        if (rRArray.length == 2){
+          var aveRR = (rRArray[0] + rRArray[1])/2;
+          displayVal('rR', parseInt(aveRR));
+          // reset array
+          rRArray.length = 0;
+        }
+      }
+    displayRRAve();
 
-  // display average hR    
-    rRArray.push(aRR);
-    if (rRArray.length == 2){
-      var aveRR = (rRArray[0] + rRArray[1])/2;
-      displayVal('rR', parseInt(aveRR));
-    // reset array
-      rRArray.length = 0;
-    }
     var rRtime = (60000 / aRR)*1; // time to next fire() 
     aRR = null;
     timeoutid2 = setTimeout(respfunc,rRtime);
@@ -196,6 +208,7 @@ function ring(){  //start drawing, ringing,
     respfunc();
   }
 }
+
 
 /* ---------- ECG animation ---------- */
 var xVal = 0, yVal;
@@ -238,23 +251,22 @@ function draw(){
 
 ///// create waves /////
 // when fire on pqrs wave start
-    var createPwaveOn = function (){
-    if (!waveOn){
-      return !afOn;
-    }
-  }
+
   if (waveOn === true) {
 // set each wave parameters
     var hRSlider = document.getElementById('hRSlider');
-    [pWStT, qRSStT, tWStT, pqDur, tDur, hRCheck] = 
-      (createPwaveOn)? [0,7,14,4,8, 'af']
-    :(hRSlider.value <= 80)? [2,12,20,4,16, '-80']
-    :(hRSlider.value <= 100)? [1,9,17,4,13, '-100']
-    : [0,7,14,4,8, '120'];
+    var waveHR = hRSlider.value;
+      [pWStT, qRSStT, tWStT, pqDur, tDur, hRCheck] = 
+        (afOn)? [0,7,14,4,8, 'af']
+      :(waveHR <= 80)? [2,12,20,4,16, '-80']
+      :(waveHR <= 100)? [1,9,17,4,13, '-100']
+      : [0,7,14,4,8, '120'];
 
   // firexVal is a wave timing, reset when fire() wave start;
     var pwaveVal;
-    if (firexVal <= (tWStT + tDur)){  //p wave
+  // wave period
+    if (firexVal <= (tWStT + tDur)){  
+      //p wave
       if (!afOn) {
         pwaveVal = createPQRSTwave(pWStT, pqDur, 3, 1, 0, 'p');
       } else {
@@ -663,7 +675,7 @@ function hRSpO2RRChangeIPC(arg){
 }
 
 
-function bPMesureIPC(arg){
+function bPMesureAtDispWin(arg){
   //arg = [sBP, dBP]
   ipcRenderer.send('bPMesure', arg);
 }
