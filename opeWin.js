@@ -10,31 +10,25 @@ function mesureBP(){
 
     bPMesureAtDispWin([sBP, dBP]);
 
-///// BP display Blink /////
-    var c = 0;
-    var timerID = setInterval(function(){
+    var blinkText = function (dispTime_ms, dispText){
       setTimeout(function(){
-        displayVal('bP', '--- / ---');
-      }, 500);
+          displayVal('bP', dispText);
+      }, dispTime_ms);
+    }
 
-      setTimeout(function(){
-          displayVal('bP', '');
-      }, 999);
+    var blink_times = 3;
+    var blink_duration_ms = 500;
 
-      c ++;
+    //blink text
+    var aay = ['--- / ---', ''];
+    for (var i=0; i < blink_times * 2; i++){
+      var mo = i%2;
+      blinkText(blink_duration_ms * i,aay[mo]);
+    }
 
-      if(c > 2){
-        clearInterval(timerID);
-      }
-    }, 1000); //call timerID() each 1sec
-
-///// finally show BP /////
-    setTimeout(function(){
-      displayVal('bP', sBP +' / '+ dBP);
-      dBP = null;
-      sBP = null;
-      timerID = null;
-    },4500);
+    //finally show BPs
+    var final_ms = blink_times * 2 * blink_duration_ms
+    blinkText(final_ms, sBP +' / '+ dBP);
   }
 }
 
@@ -43,17 +37,18 @@ function mesureBP(){
 function changeSliderBox(aDom){
   var itemName = aDom.id.split("Slider", 1);//ex "BPSliderSide"->["BP", "Side"]
   var mainItem = itemName[0];//ex "BP"
-  var smallMonitorItem = mainItem + 'small';
   var theOther;
 
   if (mainItem == 'bP'){ //BP
     var aSBPVal = aDom.value;
     document.getElementById('sBP').value = aSBPVal;
-    var aDBPVal = parseInt((40/60) * aSBPVal) -13 ;
+
+    //var aDBPVal = parseInt((3/8) * aSBPVal) + 10 ;
+    var aDBPVal = parseInt(72.811 * Math.log(aSBPVal) -279.3);
     document.getElementById('dBP').value = aDBPVal;
 
-    aSBPVal =null;
-    aDBPVal = null;
+    //aSBPVal =null;
+    //aDBPVal = null;
 
   } else { // HR, SpO2, RR
     if (aDom.type == "range"){  //slider
@@ -73,7 +68,6 @@ function changeSliderBox(aDom){
   }
   itemName =null;
   mainItem = null;
-  smallMonitorItem = null;
   theOther = null;
 }
 
@@ -85,36 +79,34 @@ var timeoutid = null; // timeoutId for ECG display
 var timeoutid2 = null; //timeoutId for resp display
 var switchOn = false;
 
-function ring(){  //start drawing, ringing, 
+function toggleOnOffSwitch(){  //start drawing, ringing, 
   //=> main.js => displayWindow
   switchOnIPC();
+  switchOn = document.getElementById('onSW').checked;
 
   // clearTimeout
   clearTimeout(timeoutid);
   clearTimeout(timeoutid2);
 
+  if (switchOn){
   ///// start waves drawing /////
   window.requestAnimationFrame(draw); //ecg
   window.requestAnimationFrame(spO2draw);
   window.requestAnimationFrame(respdraw);
 
-  //var checkedValue = null; 
-  //checkedValue = document.getElementById('onSW').checked;
-  //switchOn = (checkedValue);
-  switchOn = document.getElementById('onSW').checked;
-  //checkedValue = null;
+  createNewECGWaveAndSound(); //run only 'start'
+  respfunc(); 
 
-///// Change monitor values when SW OFF/////
-  if (!switchOn){
-    //displayVal('bP', '--- / ---');
+  } else {
+  ///// change values to default, stop waves drawing /////
     var aAry = ['hR', 'spO2', 'bP', 'rR'];
     for (i=0; i<aAry.length; i++){
     displayVal(aAry[i], '--'); }
   }
 
-///// create hR rhythms and sound play /////
+  ///// create hR rhythms and sound play /////
   var hRArray=[]; //arry to get hR average
-  var ringfunc = function(){
+  var createNewECGWaveAndSound = function(){
     //start drawing ecg wave
     fire();
 
@@ -163,9 +155,11 @@ function ring(){  //start drawing, ringing,
 
     var hRtime = (60000 / calhR); // time to next fire()
     calhR = null;
-    timeoutid = setTimeout(ringfunc, hRtime);
+    timeoutid = setTimeout(createNewECGWaveAndSound, hRtime);
     hRtime = null;
   };
+
+
 
 /* ---------- create resp rhythms ---------- */
   var rRArray=[]; 
@@ -202,11 +196,14 @@ function ring(){  //start drawing, ringing,
     timeoutid2 = setTimeout(respfunc,rRtime);
     rRtime = null;
   };
-
+/*
   if (switchOn){
-    ringfunc(); //run only 'start'
-    respfunc();
+    createNewECGWaveAndSound(); //run only 'start'
+    respfunc();  
+
   }
+*/
+--todo;rewrite above code on upper lines
 }
 
 
