@@ -596,8 +596,8 @@ const {ipcRenderer} = require('electron');
 
 
 /* ========== databox link function ========== */
-    function createArrDataPerSec(arg){
-      //arg = [sBP, dBP, hR, spO2, rR]
+    function createArrDataEachSec(arg){
+      //arg = [sBP,dBP,hR,spO2,rR, afOn, respAtaxiaOn, changeDurTime, changeTimeOn]
       var finHR = arg[2] * 1;
       var finSpO2 = arg[3] * 1;
       var finRR = arg[4] * 1;
@@ -606,7 +606,7 @@ const {ipcRenderer} = require('electron');
       var stSpO2 = document.getElementById('spO2SliderSide').value * 1;
       var stRR = document.getElementById('rRSliderSide').value * 1;
 
-      var changeDurTime = 10;
+      var changeDurTime = arg[7];
 
       var datePerSec = [];
       for(i=0; i < changeDurTime; i++){
@@ -620,52 +620,74 @@ const {ipcRenderer} = require('electron');
       return datePerSec;
     }
 
-    var cSec, toid=null;
-    function changeValSlowly (arg){
-      cSec = 0;
-      var cArg = createArrDataPerSec(arg);
+    var cElapsedSec, toid=null;
+    function changeToStanbyVal (arg){
+      //arg = [sBP,dBP,hR,spO2,rR, afOn, respAtaxiaOn, changeDurTime, changeTimeOn]
 
-      //setTimeout(changeVal(cArg, cSec), 1000);
+      //document.getElementById('bPslider').value = arg[0];
+      document.getElementById('sBP').value = arg[0];
+      document.getElementById('dBP').value = arg[1];  
 
-      var argLength = cArg.length;
-      console.log('arg.length is', argLength);
-      console.log('arg is', cArg);
-      console.log('cSec is', cSec);
-      //var aSec = cSec * 1;
-
-      var changeVal = function(){
-        //console.log('im in-in');
-        console.log('inner cSec is', cSec);
-
-        //var arg = cArg;
-        if (cSec * 1 < argLength){
-          //document.getElementById('sBP').value = arg[0];
-          //document.getElementById('dBP').value = arg[1];
-          
-          console.log('cArg is', cArg);
-          console.log(cArg[0][0]);
-          console.log('in-in-in');
-          
-          document.getElementById('hRSliderSide').value = cArg[cSec][0];
-          document.getElementById('spO2SliderSide').value = cArg[cSec][1];
-          document.getElementById('rRSliderSide').value = cArg[cSec][2];
-          document.getElementById('hRSlider').value = cArg[cSec][0];
-          document.getElementById('spO2Slider').value = cArg[cSec][1];
-          document.getElementById('rRSlider').value = cArg[cSec][2];
-          changeSliderBox(document.getElementById('spO2SliderSide'));
-          changeSliderBox(document.getElementById('hRSliderSide'));
-          changeSliderBox(document.getElementById('rRSliderSide'));
-
-
-
-          cSec++;  
-          //setTimeout(changeVal(arg, cSec), 1000);
-          //var id = setTimeout(changeVal(arg, cSec), 1000);
-          //id;
-          setTimeout(changeVal, 1000);
-        }
+      if (document.getElementById('hRcheck').checked !== arg[5]){ //af
+        document.getElementById('hRcheck').checked = arg[5];
+        hRRhythmChangeSW();
       }
-      changeVal();
+      if (document.getElementById('rRcheck').checked !== arg[6]){ //ataxic resp
+        document.getElementById('rRcheck').checked = arg[6]
+        rRRhythmChangeSW();
+      }
+
+      var changeTimeOn = arg[8]
+      if (changeTimeOn == true) {
+        cElapsedSec = 0;
+        var cArg = createArrDataEachSec(arg);
+        //cArg = [[cHR, cSpO2, cRR], [cHR, cSpO2, cRR].....]
+
+        var argLength = cArg.length;
+        console.log('arg.length is', argLength);
+        console.log('arg is', cArg);
+        console.log('cElapsedSec is', cElapsedSec);
+
+        var changeVal = function(){
+          console.log('inner cElapsedSec is', cElapsedSec);
+
+          if (cElapsedSec * 1 < argLength){
+            
+            console.log('cArg is', cArg);
+            console.log(cArg[0][0]);
+            console.log('in-in-in');
+            
+            document.getElementById('hRSliderSide').value = cArg[cElapsedSec][0];
+            document.getElementById('spO2SliderSide').value = cArg[cElapsedSec][1];
+            document.getElementById('rRSliderSide').value = cArg[cElapsedSec][2];
+            document.getElementById('hRSlider').value = cArg[cElapsedSec][0];
+            document.getElementById('spO2Slider').value = cArg[cElapsedSec][1];
+            document.getElementById('rRSlider').value = cArg[cElapsedSec][2];
+            changeSliderBox(document.getElementById('spO2SliderSide'));
+            changeSliderBox(document.getElementById('hRSliderSide'));
+            changeSliderBox(document.getElementById('rRSliderSide'));
+
+
+
+            cElapsedSec++;  
+            //setTimeout(changeVal(arg, cElapsedSec), 1000);
+            //var id = setTimeout(changeVal(arg, cElapsedSec), 1000);
+            //id;
+            setTimeout(changeVal, 1000);
+          }
+        }
+        changeVal();
+      } else {
+        document.getElementById('hRSliderSide').value = arg[2];
+        document.getElementById('spO2SliderSide').value = arg[3];
+        document.getElementById('rRSliderSide').value = arg[4];
+        document.getElementById('hRSlider').value = arg[2];
+        document.getElementById('spO2Slider').value = arg[3];
+        document.getElementById('rRSlider').value = arg[4];
+        changeSliderBox(document.getElementById('spO2SliderSide'));
+        changeSliderBox(document.getElementById('hRSliderSide'));
+        changeSliderBox(document.getElementById('rRSliderSide'));
+      }
 
     }
 
@@ -715,19 +737,10 @@ const {ipcRenderer} = require('electron');
   // ipc dataWin -- opeWin
 
   ipcRenderer.on('changeToNextValue', (event, arg) =>{
-    /*
-    document.getElementById('sBP').value = arg[0];
-    document.getElementById('dBP').value = arg[1];
-    document.getElementById('hRSliderSide').value = arg[2];
-    document.getElementById('rRSliderSide').value = arg[3];
-    document.getElementById('hRSlider').value = arg[2];
-    document.getElementById('rRSlider').value = arg[3];
-
-    //functionで書くこと。
-    #problem
-    */
     console.log('recieved!');
-    changeValSlowly (arg);
-  var anArry = createArrDataPerSec (arg);
+    console.log(arg);
+    changeToStanbyVal(arg);
+
+  var anArry = createArrDataEachSec (arg);
   ipcRenderer.send('kickback', anArry);
   });
