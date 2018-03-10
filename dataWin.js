@@ -9,7 +9,13 @@ function goButton(){
   var rR = document.getElementById('rR').value;
   var spO2 = document.getElementById('spO2').value;
 
-  var argArry = [sBP,dBP,hR,spO2,rR];
+  var afOn = document.getElementById('afOn').checked;
+  var respAtaxiaOn = document.getElementById('respAtaxiaOn').checked;
+
+  var changeDurTime = document.getElementById('changeDur').value;
+  var changeTimeOn = document.getElementById('durApply').checked;
+
+  var argArry = [sBP,dBP,hR,spO2,rR, afOn, respAtaxiaOn, changeDurTime, changeTimeOn];
 
   sendValuesToOpeWin(argArry);
 }

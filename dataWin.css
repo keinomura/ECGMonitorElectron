@@ -1,0 +1,486 @@
+body {
+font-family: Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+/*background-color: mediumpurple;*/}
+
+
+  .miniDisplay {
+    height: 300px;
+    width: 400px;
+    background-color: black;
+    float: left;
+    }
+
+    .monitorHeader {
+      height: 8%;
+      background-color: darkslategray;
+      text-align: center;
+      color: seagreen;
+      font-size: 5vh;
+      }
+
+    .monitorPanel {
+      height: 80%;}
+
+    .monitorFooter {
+      height: 10%;
+      background-color: darkslategray;}
+
+      .monitorPanel:after {
+        content: "";
+        display: block;
+        clear: both;}
+
+      .waveMonitor {
+        width: 70%;
+        height: 100%;
+        float: left;
+        background-color: black;}
+
+        .canvasWrap {
+          height: 33%;
+          background-color: black;
+          align-content: center;
+          padding: 0 3%;}
+
+          .canvas {
+            width: 100%;
+            height: 100%;}
+
+          #canvas {
+            width: 70%;
+            float: left;}
+
+    .volumePanel {
+      width:30%;
+      height: 100%; 
+      float: left;
+      background-color: black;
+      }
+
+      .eachValueBox{
+        height: 25%;
+        position: relative;}
+
+        .valueText {
+          font-size: 1vh;}
+
+        .subvalueText {
+          font-size: 3vh;}
+
+        .textValueTitle {
+          position: absolute;
+          top: 0px;
+          left: 10px;
+          text-align: center;}
+
+        .subtextValueTitle {
+          position: absolute;
+          top: 10px;
+          left: 10px;}
+
+        .smallMonitorValue{
+          height: 25%;
+          text-align: center;
+          font-size: 4vh;
+
+          /* letter counts of bp value are sometimes long, set bp style 4vh */}
+
+        .mainMonitorValue {
+          height: 25%;
+          text-align: center;
+          font-size: 10vh;
+          /* letter counts of bp value are sometimes long, set bp style 9vh */}
+
+  .volumeBar{
+    float: left;
+    width: 40px;
+    height: 300px;
+  }
+  #volControl{
+      -webkit-appearance: none;
+    background-color: green;
+
+      -webkit-transform:rotate(270deg);       
+    -moz-transform:rotate(270deg);
+    -o-transform:rotate(270deg);
+    -ms-transform:rotate(270deg);
+    transform:rotate(270deg);
+    z-index: 0;
+    transform-origin: left bottom;}
+
+
+
+  .controlerPanel {
+    height: 300px;
+    width: 400px;
+    /*background-color: rebeccapurple;*/
+    float: left;
+    }
+
+      .valBox {
+        width: 400px;
+        /*padding-top: 10px;*/
+        /*position: relative;*/
+        /*padding-top: 15px;*/
+        height: 60px;
+        /*height: 20%;*/
+      }
+
+      .volBox:after {
+        content: "";
+        display: block;
+        clear: both
+      }
+
+      .minmaxValue {
+        /*height: 25px;*/
+        float: left;
+        /*height: 100%;*/
+        width: 4%;
+        margin-top: 20px;
+        font-size: 8pt;
+        color: gray;
+
+      }
+
+      .sliderBar {
+        float: left;
+        margin-top: 20px;
+        width: 45%
+      }
+
+      .valueChangeBox {
+        float: left;
+        margin-top: 17px;
+        width: 5%;
+        text-align: center;
+        margin-left: 10px;
+
+      }
+
+      .inputBoxDiv {
+        float: left;
+        width: 10%;
+        margin-top: 5px;
+        margin-left: 10px;
+
+      }
+
+      .inputField {
+        /*position: absolute;*/
+        top: 10px;
+        left: 50px;
+        /*float: left;
+        width: 5%*/
+        text-align: center;
+        /*background-color: palevioletred;*/
+
+      }
+
+      .optionVal {
+        /*height: 25px;*/
+        float: left;
+        /*height: 100%;*/
+        width: 5%;
+        margin-top: 18px;
+        font-size: 10pt;
+        color: lightgray;
+        margin-left: 25px;
+        text-align: right;
+
+      }
+
+      .buttonBox {
+        float:left;
+        width: 10%;
+        margin-top: 14px;
+        text-align: center;
+        margin-left: 14px;
+
+      }
+
+      .inputBox {
+        width: 30px;
+        text-align: center;
+      }
+
+        .verticalMiddle {
+          text-align: center;
+          display: table-cell;
+          vertical-align: middle;
+        }
+
+      .startButtonBox {
+        margin-right:10px;
+      }
+
+
+.Display {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  float: left;}
+
+  .subWinsubtextValueTitle{
+    position: absolute;
+    top: 3vh;
+    left: 10px;}
+
+  .subWinbuttomsubtextValueTitle{
+    position: absolute;
+    bottom: 5vh;
+    left: 10px;
+    font-size: 2vh;}
+
+
+
+
+
+
+
+color {}
+
+  .hRcolor {
+    color: lightgreen;
+  }
+
+  .bPcolor {
+    color: palevioletred;
+  }
+
+  .sPO2color {
+    color: lightskyblue;
+  }
+
+  .respcolor {
+    color: white;
+  }
+
+
+
+
+
+.button {
+	position: relative;
+	background-color: #1abc9c;
+	border-radius: 4px;
+	color: #fff;
+	line-height: 20px;
+	-webkit-transition: none;
+	transition: none;
+	box-shadow: 0 3px 0 #0e8c73;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);}
+  .button:hover {
+    background-color: #31c8aa;
+    box-shadow: 0 3px 0 #23a188;
+  }
+  .button:active {
+    top: 3px;
+    box-shadow: none;
+  }
+
+
+input{}
+
+  input[type=range] {
+    -webkit-appearance: none;
+    /*margin: 10px 0;*/
+        margin: 0px 0;
+
+    width: 90%;
+  }
+  input[type=range]:focus {
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 1px 1px 1px #000000;
+    background: #3071A9;
+    border-radius: 5px;
+    border: 1px solid #000000;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000000;
+    border: 1px solid #000000;
+    height: 30px;
+    width: 15px;
+    border-radius: 5px;
+    background: #FFFFFF;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -11px;
+  }
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #3071A9;
+  }
+  input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 1px 1px 1px #000000;
+    background: #3071A9;
+    border-radius: 5px;
+    border: 1px solid #000000;
+  }
+  input[type=range]::-moz-range-thumb {
+    box-shadow: 1px 1px 1px #000000;
+    border: 1px solid #000000;
+    height: 30px;
+    width: 15px;
+    border-radius: 5px;
+    background: #FFFFFF;
+    cursor: pointer;
+  }
+  input[type=range]::-ms-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+  input[type=range]::-ms-fill-lower {
+    background: #3071A9;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px #000000;
+  }
+  input[type=range]::-ms-fill-upper {
+    background: #3071A9;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px #000000;
+  }
+  input[type=range]::-ms-thumb {
+    box-shadow: 1px 1px 1px #000000;
+    border: 1px solid #000000;
+    height: 30px;
+    width: 15px;
+    border-radius: 5px;
+    background: #FFFFFF;
+    cursor: pointer;
+  }
+  input[type=range]:focus::-ms-fill-lower {
+    background: #3071A9;
+  }
+  input[type=range]:focus::-ms-fill-upper {
+    background: #3071A9;
+  }
+
+  input[type=range][orient=vertical]{
+ margin-top: 50px;
+ width: 150px;
+   transform: rotate(270deg);
+  -moz-transform: rotate(270deg); /*do same for other browsers if required*/
+    }
+
+
+  input[type=range]#hRSlider::-webkit-slider-runnable-track {
+    background: lightgreen;
+  }
+
+ input[type=range]#bPSlider::-webkit-slider-runnable-track {
+    background: palevioletred;
+  }
+   input[type=range]#spO2Slider::-webkit-slider-runnable-track {
+    background: lightskyblue;
+  }
+   input[type=range]#rRSlider::-webkit-slider-runnable-track {
+    background: white;
+  }
+
+
+
+
+
+  /* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 15px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(18px);
+  -ms-transform: translateX(18px);
+  transform: translateX(18px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 36px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.btn {
+  background: #f285ee;
+  background-image: -webkit-linear-gradient(top, #f285ee, #b82c87);
+  background-image: -moz-linear-gradient(top, #f285ee, #b82c87);
+  background-image: -ms-linear-gradient(top, #f285ee, #b82c87);
+  background-image: -o-linear-gradient(top, #f285ee, #b82c87);
+  background-image: linear-gradient(to bottom, #f285ee, #b82c87);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 10px 20px 10px 20px;
+  border: solid #871f8c 2px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #e07bdd;
+  background-image: -webkit-linear-gradient(top, #e07bdd, #94266e);
+  background-image: -moz-linear-gradient(top, #e07bdd, #94266e);
+  background-image: -ms-linear-gradient(top, #e07bdd, #94266e);
+  background-image: -o-linear-gradient(top, #e07bdd, #94266e);
+  background-image: linear-gradient(to bottom, #e07bdd, #94266e);
+  text-decoration: none;
+}

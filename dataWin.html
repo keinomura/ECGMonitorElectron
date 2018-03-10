@@ -3,7 +3,7 @@
 
 <title>datawindow</title>
 <script type="text/javascript" src="dataWin.js"></script>
-<link rel="stylesheet" type="text/css" href="opeWin.css">
+<link rel="stylesheet" type="text/css" href="dataWin.css">
 
 <script>
 const remote = require('electron').remote;
@@ -25,24 +25,48 @@ window.addEventListener('contextmenu', function (e) {
 
 <body>
 
-<div class='nextData'>
+<div class='standbyData1'>
+            <input class='standbySubtitle' type="text" id='vitalTitle' value='subTitle'>
+  <div class="hR">HR
+        <input class='inputBox' type="text" id='hR' value='50'>
+        Af<input type="checkbox" id="afOn" onclick="">
+  </div>
   <div class="bP">BP
         <input class='inputBox' type="text" id='sBP' value='95'>
         <input class='inputBox' type="text" id='dBP' value='45'>
   </div>
-  <div class="hR">HR
-        <input class='inputBox' type="text" id='hR' value='50'>
-  </div>
   <div class="spO2">SpO2
-        <input class='inputBox' type="text" id='spO2' value='99'>
+      <input class='inputBox' type="text" id='spO2' value='99'>
   </div>
   <div class="rR">RR
-        <input class='inputBox' type="text" id='rR' value='10'>
+      <input class='inputBox' type="text" id='rR' value='10'>
+      Ataxia<input type="checkbox" id="respAtaxiaOn" onclick="">
+
   </div>
 
-		     <div class="buttonBox">
+  <div class="changeDur">
+        Time<input class='inputBox' type="text" id='changeDur' value='10'>
+    <input type="checkbox" id="durApply" onclick="">
+
+  </div>
+  <div class="gobutton">
         <input class='btn' type="button" id="dataTrans" value='go' onclick="goButton();">
+  </div>
+</div>
+
+
+<div class='caseFrame'>
+      <div class="valueFrame">
+            <div class="aLine"></div>
+            <div class="aLine"></div>
+            <div class="aLine"></div>
+            <div class="aLine"></div>
+            <div class="aLine"></div>
+            <div class="aLine"></div>
+            <div class="aLine"></div>
       </div>
 </div>
+
+
 </body>
 </html>
