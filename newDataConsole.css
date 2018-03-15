@@ -1,0 +1,104 @@
+.rightConsole {
+  width: 450px;
+}
+
+.caseNoSelect {
+  height: 200px;
+}
+
+.caseTable {
+  height: 350px;
+  overflow-x: auto;
+}
+
+#caseTable .tr {
+  width: 100px;
+}
+
+
+.tbody, .tr {
+  position: relative;
+  widows: 100px;
+}
+
+table thead{
+  float: left;
+}
+
+table tbody {
+  float: left;
+  padding: 0 10px;
+  width: 100%;
+}
+
+table tbody tr{
+  display: inline-block;
+  vertical-align: top;
+  border: 2px solid white;
+  /*border-width: 2px;*/
+  background-color: black;
+  width: none;
+}
+
+tbody {
+  overflow-x: auto;
+  white-space: nowrap;
+  width: auto;
+}
+
+table tr th,
+table tr td {
+    padding: 0 10px;
+    /* border: 1px solid #DDD;*/
+    vertical-align: middle;
+    display: block;
+}
+
+table tr th {
+    text-align: center;
+    font-weight: bold;
+    width: 100px;
+}
+
+table tr td {
+    text-align: center;
+    width: 130px;
+}
+
+.inputBox {
+  width: 50px;
+  outline: none;
+  border: 0 none;
+}
+
+input[type=text]{
+  text-align: center;
+  font-size: 120%;
+  width: 60px;
+  background-color: black;
+  outline: none;
+  border: 0;
+  font-family: Helvetica , Arial , Verdana , Roboto , "Yu Gothic" , "YuGothic" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , Meiryo , "MS PGothic" , sans-serif;
+}
+
+.subtitle {color: white;}
+.hR, .Af {color: green; text-decoration-color: green}
+.rR, .ataxia {color: white}
+.spO2 {color: aqua}
+.sBP, .dBP {color: pink}
+.time, .slow_change {color: gray}
+.Af text {color: green}
+tr text {color: gray}
+
+.applyButton {
+  align-content: center;
+  text-align: center;
+  margin-left: 50px;
+  width: 50px;
+}
+
+.caseNoSorces {
+  margin-top: 50px;
+  margin-left: 50px;
+  font-size: 120%;
+}

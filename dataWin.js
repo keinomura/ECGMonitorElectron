@@ -1,6 +1,11 @@
 //call ipc module
 const {ipcRenderer} = require('electron');
 
+// load from json file
+var json = require('./sampleValues.json');
+console.log(json);
+
+
 //
 function goButton(){
   var sBP = document.getElementById('sBP').value;
