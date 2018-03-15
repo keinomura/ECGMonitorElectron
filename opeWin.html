@@ -4,6 +4,13 @@
 <title>opewindow</title>
 <script type="text/javascript" src="opeWin.js"></script>
 <link rel="stylesheet" type="text/css" href="opeWin.css">
+
+<script type="text/javascript" src="ECGnewConsole.js"　charset="UTF-8"></script>
+<link rel="stylesheet" type="text/css" href="ECGnewConsole.css">
+
+<script type="text/javascript" src="newDataConsole.js" charset="UTF-8"></script>
+<link rel="stylesheet" type="text/css" href="newDataConsole.css">
+
 <script>
 const remote = require('electron').remote;
 const Menu = remote.Menu;
@@ -18,161 +25,248 @@ window.addEventListener('contextmenu', function (e) {
   e.preventDefault();
   menu.popup(remote.getCurrentWindow());
 }, false);
+
+
+
+
+
+
 </script>
 </head>
 
 <body>
+  <div class="allConsole">
+    <div class="leftConsole">
+      <div class='displayAndVol'>
+        <div class='miniDisplay'>
+          <div class="monitorHeader" style="font-size: 2vh;">ECG monitor for ISLS</div>
 
-<div class='miniDisplay'>
-  <div class="monitorHeader" style="font-size: 2vh;">ECG monitor for ISLS</div>
+          <div class="monitorPanel">
+            <div class="waveMonitor">
+              <div class="canvasWrap">
+                <canvas class='canvas' id="hRCanvas"></canvas>
+              </div>
+              <div class="canvasWrap">
+                <canvas class='canvas sPO2color' id="spO2Canvas" ></canvas>
+              </div>
+              <div class="canvasWrap">
+                <canvas class='canvas' id="respCanvas"></canvas>
+              </div>
+            </div>
+            <div class="volumePanel">
+              <!--
+              Small Monitor elements
+                -->
+              <div class='eachValueBox'>
+                <div class='yohaku' style="height: 10px"></div>
+                <div id='hRsmall' class='smallMonitorValue hRcolor'>--</div>
+                <div class='valueText hRcolor textValueTitle'>ECG</div>
+                <div class='valueText hRcolor subtextValueTitle'>bpm</div> 
+              </div>
+              <div class='eachValueBox'>
+                <div class='yohaku' style="height: 10px"></div>
+                <div id='bPsmall' class='smallMonitorValue bPcolor' style="font-size: 2.5vh;">--- / ---</div>
+                <div class='valueText bPcolor textValueTitle'>NIBP</div>
+                <div class='valueText bPcolor subtextValueTitle'></div> 
+              </div>
+              <div class='eachValueBox'>
+                <div class='yohaku' style="height: 10px"></div>
+                <div id='spO2small' class='smallMonitorValue sPO2color'>--</div>
+                <div class='valueText sPO2color textValueTitle'>SpO2</div>
+                <div class='valueText sPO2color subtextValueTitle'>%</div> 
+              </div>
+              <div class='eachValueBox'>
+                <div class='yohaku' style="height: 10px"></div>
+                <div id='rRsmall' class='smallMonitorValue respcolor'>--</div>
+                <div class='valueText respcolor textValueTitle'>Resp</div>
+                <div class='valueText respcolor subtextValueTitle'>rpm</div> 
+              </div> 
+            </div>
+          </div>
 
-  <div class="monitorPanel">
-    <div class="waveMonitor">
-      <div class="canvasWrap">
-        <canvas class='canvas' id="hRCanvas"></canvas>
+          <div class="monitorFooter" style="font-size: 1vh;">
+            <div class="copyright" style="font-size: 1vh;margin:10px;text-align: right;"> (c) 2017-2018 Kei Nom</div>
+          </div>
+
+        </div>
+        <div class="unitbox" id="unitbox5" style="width: 100px;">  <!-- Volume bar and On-Off Switch -->
+          <div class="sliderbox" id="sliderbox5">
+            <div class="slidershell" id="slidershell5"> <!--The outer positioning context for the divs it contains-->
+              <div class="sliderfill" id="sliderfill5"></div>
+              <div class="slidertrack" id="slidertrack5"></div>
+              <div class="sliderthumb" id="sliderthumb5"></div>
+              <div class="slidervalue" id="slidervalue5">0</div>
+              <input class="slider" id="slider5" type="range" orient="vertical" min="0" max="1.0" value="0.5" step="0.1"
+              oninput="showValue(value,5,true);" onchange="showValue(value,5,true);" style="background-color:yellow;"/>
+            </div>
+          </div>
+          <div class="mainSwitchBox" id="switchbox5">
+            <input type="button" id="switchBtn51" value="ON" onclick="tggleButton(this, 'onOff')">
+          </div>
+        </div>
       </div>
-      <div class="canvasWrap">
-        <canvas class='canvas sPO2color' id="spO2Canvas" ></canvas>
-      </div>
-      <div class="canvasWrap">
-        <canvas class='canvas' id="respCanvas"></canvas>
+
+      <div class="controlerPanel">
+        <div class="valBar verticalMiddle" style="display:none;">  <!-- ver.1 control panel -->
+
+          <div class="hRBox valBox">
+            <div id='hR' hidden>95</div>
+            <div class='minmaxValue'>30</div>
+            <div class="sliderBar">	
+              <input id="hRSlider" type="range" min="30" max="140" value="95" step="1" oninput="changeSliderBox(this);"/>
+            </div>
+            <div class="minmaxValue">140</div>
+            <div class='valueChangeBox'>   
+              <input type="number" id="hRSliderSide" value="95" min="30" max="140" oninput="changeSliderBox(this);" onchange="changeSliderBox(this);" style="width: 35px"/>
+            </div>
+            <div class="optionVal" id="optionalValaf">af</div>
+            <div class="buttonBox">
+              <label class="switch">
+                <input type="checkbox" id="hRcheck" onclick="hRRhythmChangeSW()">
+                <div class="slider round"></div>
+              </label>
+            </div>
+          </div>
+
+          <!--
+          BP elements
+            -->
+          <div class="bPbox valBox">
+            <div class='minmaxValue'>60</div>
+            <div class="sliderBar">	
+              <input id="bPSlider" type="range" min="60" max="250" value="95" step="1" oninput="changeSliderBox(this);"/>
+            </div>
+            <div class="minmaxValue">250</div>
+
+            <div class="inputBoxDiv">
+              <input class='inputBox' type="text" id='sBP' value='100'>
+              <input class='inputBox' type="text" id='dBP' value='60'>
+
+            </div>
+
+            <div class="buttonBox">
+              <input class='btn' type="button" id="mesureBP" value='mesure' onclick="mesureBP();">
+            </div>
+          </div>
+
+          <!--
+          SpO2 elements
+            -->
+          <div class="spO2Box valBox">
+            <div id='spO2' hidden>95</div>
+            <div class='minmaxValue'>70</div>
+            <div class="sliderBar">
+              <input id="spO2Slider" type="range" min="70" max="100" value="95" step="1" oninput="changeSliderBox(this);"/>
+            </div>
+            <div class="minmaxValue">100</div>
+            <div class="valueChangeBox">
+              <input type="number" id="spO2SliderSide" value="95" min="70" max="100" onchange="changeSliderBox(this);" style="width: 35px"/>
+            </div>
+          </div>
+
+
+          <div class="rRBox valBox">
+            <div id='rR' hidden>10</div>
+            <div class='minmaxValue'>4</div>
+            <div class="sliderBar">	
+              <input id="rRSlider" type="range" min="4" max="30" value="10" step="1" oninput="changeSliderBox(this);"/>
+            </div>
+            <div class="minmaxValue">30</div>
+            <div class="valueChangeBox">
+              <input type="number" id="rRSliderSide" value="10" min="4" max="30" onchange="changeSliderBox(this);" style="width: 35px"/>
+            </div>
+            <div class="optionVal" id="optionalValrR">ataxic</div>
+            <div class="buttonBox">
+              <label class="switch">
+                <input type="checkbox" id="rRcheck" onclick="rRRhythmChangeSW()">
+                <div class="slider round"></div>
+              </label>
+            </div>
+          </div>
+
+          <div class='startButtonBox' style="margin: 30px; color: lightgray;font-size: 10pt;"> 
+            Power
+          <label class="switch">
+            <input type="checkbox" id="onSW" onclick="toggleOnOffSwitch()">
+            <div class="slider"></div>
+          </label>
+          
+          </div>
+        
+          
+        </div>
+        <div class='ver2ControlPanel' style='margin-top:50px;'>
+          <div class="unitbox" id="unitbox1"> <!-- HR -->
+            <div class="sliderbox" id="sliderbox1">
+              <div class="slidershell" id="slidershell1"> <!--The outer positioning context for the divs it contains-->
+                <div class="sliderfill" id="sliderfill1"></div>
+                <div class="slidertrack" id="slidertrack1"></div>
+                <div class="sliderthumb" id="sliderthumb1"></div>
+                <div class="slidervalue" id="slidervalue1">0</div>
+                <input class="slider" id="slider1" type="range" orient="vertical" min="40" max="150" value="70"
+                oninput="showValue(value,1,true);" onchange="showValue(value,1,true);" style="background-color:yellow;"/>
+              </div>
+            </div>
+            <div class="switchbox" id="switchbox1">
+              <input type="button" id="switchBtn1" value="Af" onclick="tggleButton(this, 'afWave')">
+            </div>
+          </div>
+          <div class="unitbox" id="unitbox2"> <!-- SBP -->
+            <div class="sliderbox" id="sliderbox2">
+              <div class="slidershell" id="slidershell2"> <!--The outer positioning context for the divs it contains-->
+                <div class="sliderfill" id="sliderfill2"></div>
+                <div class="slidertrack" id="slidertrack2"></div>
+                <div class="sliderthumb" id="sliderthumb2"></div>
+                <div class="slidervalue" id="slidervalue2">0</div>
+                <input class="slider" id="slider2" type="range" orient="vertical" min="60" max="250" value="70"
+                oninput="showValue(value,2,true);" onchange="showValue(value,2,true);" style="background-color:yellow;"/>
+              </div>
+              <div class="bPmesureBox" id="bPmesureBox">
+                <input type="button" id="bPswitch" value="go" onclick="mesureBP()">
+              </div>
+            </div>
+
+          </div>
+          <div class="unitbox" id="unitbox3"> <!-- SpO2 -->
+            <div class="sliderbox" id="sliderbox3">
+              <div class="slidershell" id="slidershell3"> <!--The outer positioning context for the divs it contains-->
+                <div class="sliderfill" id="sliderfill3"></div>
+                <div class="slidertrack" id="slidertrack3"></div>
+                <div class="sliderthumb" id="sliderthumb3"></div>
+                <div class="slidervalue" id="slidervalue3">0</div>
+                <input class="slider" id="slider3" type="range" orient="vertical" min="70" max="100" value="70"
+                oninput="showValue(value,3,true);" onchange="showValue(value,3,true);" style="background-color:yellow;"/>
+              </div>
+            </div>
+          </div>
+          <div class="unitbox" id="unitbox4"> <!-- RR --> 
+            <div class="sliderbox" id="sliderbox4">
+              <div class="slidershell" id="slidershell4"> <!--The outer positioning context for the divs it contains-->
+                <div class="sliderfill" id="sliderfill4"></div>
+                <div class="slidertrack" id="slidertrack4"></div>
+                <div class="sliderthumb" id="sliderthumb4"></div>
+                <div class="slidervalue" id="slidervalue4">0</div>
+                <input class="slider" id="slider4" type="range" orient="vertical" min="4" max="30" value="70"
+                oninput="showValue(value,4,true);" onchange="showValue(value,4,true);" style="background-color:yellow;"/>
+              </div>
+            </div>
+            <div class="switchbox" id="switchbox4">
+              <input type="button" id="switchBtn41" value="ataxia" onclick="tggleButton(this, 'ataxia')">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="volumePanel">
-      <!--
-      Small Monitor elements
-        -->
-      <div class='eachValueBox'>
-        <div class='yohaku' style="height: 10px"></div>
-        <div id='hRsmall' class='smallMonitorValue hRcolor'>--</div>
-        <div class='valueText hRcolor textValueTitle'>ECG</div>
-        <div class='valueText hRcolor subtextValueTitle'>bpm</div> 
-      </div>
-      <div class='eachValueBox'>
-        <div class='yohaku' style="height: 10px"></div>
-        <div id='bPsmall' class='smallMonitorValue bPcolor' style="font-size: 2.5vh;">--- / ---</div>
-        <div class='valueText bPcolor textValueTitle'>NIBP</div>
-        <div class='valueText bPcolor subtextValueTitle'></div> 
-      </div>
-      <div class='eachValueBox'>
-        <div class='yohaku' style="height: 10px"></div>
-        <div id='spO2small' class='smallMonitorValue sPO2color'>--</div>
-        <div class='valueText sPO2color textValueTitle'>SpO2</div>
-        <div class='valueText sPO2color subtextValueTitle'>%</div> 
-      </div>
-      <div class='eachValueBox'>
-        <div class='yohaku' style="height: 10px"></div>
-        <div id='rRsmall' class='smallMonitorValue respcolor'>--</div>
-        <div class='valueText respcolor textValueTitle'>Resp</div>
-        <div class='valueText respcolor subtextValueTitle'>rpm</div> 
-      </div> 
+    <div class="rightConsole">
+        <div class="caseNoSelect" id="caseNoSelect" >
+            <select name="caseNoSorces" id="caseNoSorces" class="caseNoSorces" onchange="showVital(this)">
+            </select>
+          </div>
+          <div class="caseTable" id="caseTablediv">
+            <table id="caseTable">
+            </table>
+          </div>
     </div>
   </div>
-
-  <div class="monitorFooter" style="font-size: 1vh;">
-    <div class="copyright" style="font-size: 1vh;margin:10px;text-align: right;"> (c) 2017 Kei Nom</div>
-  </div>
-
-</div>
-
-
-  <div class='volumeBar' id='volumeBar'>
-    <input id='volControl' type="range" orient="vertical" min="0" max="1.0" value="1.0" step="0.1" style="position:absolute; left: 430px;top: 150px;"/> 
-  <div style="text-align: center;margin-top: 210px;color: lightgray;">Vol</div>
-  </div>
-
-<!--
-HR elements
-  -->
-<div class="controlerPanel">
-
-
-  <div class="valBar verticalMiddle">
-
-    <div class="hRBox valBox">
-      <div id='hR' hidden>95</div>
-      <div class='minmaxValue'>30</div>
-      <div class="sliderBar">	
-        <input id="hRSlider" type="range" min="30" max="140" value="95" step="1" oninput="changeSliderBox(this);"/>
-      </div>
-      <div class="minmaxValue">140</div>
-      <div class='valueChangeBox'>   
-        <input type="number" id="hRSliderSide" value="95" min="30" max="140" oninput="changeSliderBox(this);" onchange="changeSliderBox(this);" style="width: 35px"/>
-      </div>
-      <div class="optionVal" id="optionalValaf">af</div>
-      <div class="buttonBox">
-        <label class="switch">
-          <input type="checkbox" id="hRcheck" onclick="hRRhythmChangeSW()">
-          <div class="slider round"></div>
-        </label>
-      </div>
-    </div>
-
-    <!--
-    BP elements
-      -->
-    <div class="bPbox valBox">
-      <div class='minmaxValue'>60</div>
-      <div class="sliderBar">	
-        <input id="bPSlider" type="range" min="60" max="250" value="95" step="1" oninput="changeSliderBox(this);"/>
-      </div>
-      <div class="minmaxValue">250</div>
-
-      <div class="inputBoxDiv">
-        <input class='inputBox' type="text" id='sBP' value='100'>
-        <input class='inputBox' type="text" id='dBP' value='60'>
-
-      </div>
-
-      <div class="buttonBox">
-        <input class='btn' type="button" id="mesureBP" value='mesure' onclick="mesureBP();">
-      </div>
-    </div>
-
-    <!--
-    SpO2 elements
-      -->
-    <div class="spO2Box valBox">
-      <div id='spO2' hidden>95</div>
-      <div class='minmaxValue'>70</div>
-      <div class="sliderBar">
-        <input id="spO2Slider" type="range" min="70" max="100" value="95" step="1" oninput="changeSliderBox(this);"/>
-      </div>
-      <div class="minmaxValue">100</div>
-      <div class="valueChangeBox">
-        <input type="number" id="spO2SliderSide" value="95" min="70" max="100" onchange="changeSliderBox(this);" style="width: 35px"/>
-      </div>
-    </div>
-
-
-    <div class="rRBox valBox">
-      <div id='rR' hidden>10</div>
-      <div class='minmaxValue'>4</div>
-      <div class="sliderBar">	
-        <input id="rRSlider" type="range" min="4" max="30" value="10" step="1" oninput="changeSliderBox(this);"/>
-      </div>
-      <div class="minmaxValue">30</div>
-      <div class="valueChangeBox">
-        <input type="number" id="rRSliderSide" value="10" min="4" max="30" onchange="changeSliderBox(this);" style="width: 35px"/>
-      </div>
-      <div class="optionVal" id="optionalValrR">ataxic</div>
-      <div class="buttonBox">
-        <label class="switch">
-          <input type="checkbox" id="rRcheck" onclick="rRRhythmChangeSW()">
-          <div class="slider round"></div>
-        </label>
-      </div>
-    </div>
-
-    <div class='startButtonBox' style="margin: 30px; color: lightgray;font-size: 10pt;"> 
-      Power
-    <label class="switch">
-      <input type="checkbox" id="onSW" onclick="toggleOnOffSwitch()">
-      <div class="slider"></div>
-    </label>
-    
-    </div>
-  </div>
-  
 </body>
 </html>

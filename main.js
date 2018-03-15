@@ -1,101 +1,101 @@
-//modules
-"use strict";
-const {app, Menu, BrowserWindow, ipcMain} = require('electron');
+// modules
+'use strict'
+const {app, Menu, BrowserWindow, ipcMain} = require('electron')
 
-const path = require('path');
-const url = require('url');
+const path = require('path')
+const url = require('url')
 
 // main window
-let main_Win;
- 
-function createWindow () {
-  if (main_Win == null){
-  // create new main Window
-  main_Win = new BrowserWindow({width: 1000, height: 700})
+let mainWin
 
-  // set main window URL
-  main_Win.loadURL(url.format({
-    pathname: path.join(__dirname, 'opeWin.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
+function createWindow () {
+  var mainWin
+  if (mainWin == null) {
+    // create new main Window
+    mainWin = new BrowserWindow({width: 1000, height: 700})
+
+    // set main window URL
+    mainWin.loadURL(url.format({
+      pathname: path.join(__dirname, 'opeWin.html'),
+      protocol: 'file:',
+      slashes: true
+    }))
   } else {
-    main_Win.show();
+    mainWin.show()
   }
   // devTool
-  main_Win.webContents.openDevTools();
- 
+   mainWin.webContents.openDevTools()
+
   // when main window is closed
-  main_Win.on('closed', function () {
-    main_Win = null
+  mainWin.on('closed', function () {
+    mainWin = null
   })
 }
 
-
 // sub window
-let sub_Win;
+let subWin
 
 function createsubWindow () {
-  if (sub_Win == null) {
+  if (subWin == null) {
     // create sub Window
-    sub_Win = new BrowserWindow({width: 1200, height: 1000})
+    subWin = new BrowserWindow({width: 1200, height: 1000})
 
-  // set sub window URL
-    sub_Win.loadURL(url.format({
+    // set sub window URL
+    subWin.loadURL(url.format({
       pathname: path.join(__dirname, 'dispWin.html'),
       protocol: 'file:',
       slashes: true
     }))
   } else {
-    sub_Win.show();
+    subWin.show()
   }
- 
-// devTool
-  //sub_Win.webContents.openDevTools();
- 
+
+  // devTool
+  // subWin.webContents.openDevTools()
+
   // when sub window is closed
-  sub_Win.on('closed', function () {
-    sub_Win = null
+  subWin.on('closed', function () {
+    subWin = null
   })
 }
 
-let data_Win;
+/*
+let dataWin
 
 function createdataWindow () {
-  if (data_Win == null) {
+  if (dataWin == null) {
     // create data Window
-    data_Win = new BrowserWindow({width: 300, height: 300})
+    dataWin = new BrowserWindow({width: 300, height: 300})
 
-  // set data window URL
-    data_Win.loadURL(url.format({
+    // set data window URL
+    dataWin.loadURL(url.format({
       pathname: path.join(__dirname, 'dataWin.html'),
       protocol: 'file:',
       slashes: true
     }))
   } else {
-    data_Win.show();
+    dataWin.show()
   }
+  
 
+  // devTool
+  dataWin.webContents.openDevTools()
 
-
-// devTool
-  //sub_Win.webContents.openDevTools();
- 
   // when sub window is closed
-  data_Win.on('closed', function () {
-    data_Win = null
+  dataWin.on('closed', function () {
+    dataWin = null
   })
+  
 }
+*/
 
-
- 
 //  when finished init
-// create two windows at start 
+// create two windows at start
 app.on('ready', () => {
-  createWindow();
-  createsubWindow();
-  createdataWindow();
-});
+  createWindow()
+  createsubWindow()
+  //createdataWindow()
+})
 
 // All window were closed
 app.on('window-all-closed', function () {
@@ -106,96 +106,85 @@ app.on('window-all-closed', function () {
 })
 // application active
 app.on('activate', function () {
-  /// if main_win is not exist, create new.
-  if (main_Win === null) {
-    createWindow();
+  /// if mainWin is not exist, create new.
+  if (mainWin === null) {
+    createWindow()
   }
-});
+})
 
-
-////////////////////
-//ipc
-////////////////////
+/// /////////////////
+// ipc
+/// /////////////////
 
 // ipc opeWin --> dispWin
 
-ipcMain.on('switchOntoMain', (event, arg) =>{
-//console.log('received!');
-//console.log(arg);
-sub_Win.webContents.send('switch-on', arg);
-
-});
+ipcMain.on('switchOntoMain', (event, arg) => {
+// console.log('received!')
+// console.log(arg)
+  subWin.webContents.send('switch-on', arg)
+})
 
 ipcMain.on('afOn', (event, arg) => {
-  sub_Win.webContents.send('afOn', arg);
+  subWin.webContents.send('afOn', arg)
 })
 
 ipcMain.on('ataxiaOn', (event, arg) => {
-  sub_Win.webContents.send('ataxiaOn', arg);
+  subWin.webContents.send('ataxiaOn', arg)
 })
 
 ipcMain.on('valChange', (event, arg) => {
-  sub_Win.webContents.send('valChange', arg);
+  subWin.webContents.send('valChange', arg)
 })
 
 ipcMain.on('bPMesure', (event, arg) => {
-  sub_Win.webContents.send('bPMesure', arg);
-});
+  subWin.webContents.send('bPMesure', arg)
+})
 
 ipcMain.on('changeToNextValue', (event, arg) => {
-  main_Win.webContents.send('changeToNextValue', arg);
-  console.log('yes');
-});
+  mainWin.webContents.send('changeToNextValue', arg)
+  console.log('yes')
+})
 
 ipcMain.on('kickback', (event, arg) => {
-  console.log(arg);
-});
+  console.log(arg)
+})
 
-
-
-
-
-
-
-
-
-////////////////////
+/// /////////////////
 // application menu
 
+app.on('ready', function () {
+  installMenu()
+})
 
-app.on('ready', function() {
-  installMenu();
-});
+function installMenu () {
+  let template
 
-function installMenu() {
-  let template;
-
-template = [
-  {
-    label: 'app-name',
-    submenu: [
-      {
-        label: 'Quit',
-        accelerator: 'Command+Q',
-        click: function() { app.quit(); }
-      },
-    ]
-  },
-  {
-    label: 'Window',
-    submenu: [
-      {
-        label: 'DisplayWindow',
-        click: function() { createsubWindow(); }
-      },
-      {
-        label: 'OperationWindow',
-        click: function() { createWindow(); }
-      },
-    ]
-  },
-];
+  template = [
+    {
+      label: 'app-name',
+      submenu: [
+        {
+          label: 'Quit',
+          accelerator: 'Command+Q',
+          click: function () { app.quit() }
+        }
+      ]
+    },
+    {
+      label: 'Window',
+      submenu: [
+        {
+          label: 'DisplayWindow',
+          click: function () { createsubWindow() }
+        },
+        {
+          label: 'OperationWindow',
+          click: function () { createWindow() }
+        }
+      ]
+    }
+  ]
 
   const menu = Menu.buildFromTemplate(template)
-  Menu.setApplicationMenu(menu);
+  Menu.setApplicationMenu(menu)
 }

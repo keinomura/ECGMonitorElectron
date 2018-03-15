@@ -1,0 +1,66 @@
+<html>  
+  <head>
+    <script type="text/javascript" src="ECGnewConsole.js"></script>
+    <link rel="stylesheet" type="text/css" href="ECGnewConsole.css">
+  </head>
+  <body>
+    <div class="unitbox" id="unitbox1"> <!-- HR -->
+      <div class="sliderbox" id="sliderbox1">
+        <div class="slidershell" id="slidershell1"> <!--The outer positioning context for the divs it contains-->
+            <div class="sliderfill" id="sliderfill1"></div>
+            <div class="slidertrack" id="slidertrack1"></div>
+            <div class="sliderthumb" id="sliderthumb1"></div>
+            <div class="slidervalue" id="slidervalue1">0</div>
+            <input class="slider" id="slider1" type="range" orient="vertical" min="40" max="150" value="70"
+            oninput="showValue(value,1,true);" onchange="showValue(value,1,true);" style="background-color:yellow;"/>
+        </div>
+      </div>
+      <div class="switchbox" id="switchbox1">
+        <input type="button" id="switchBtn1" value="Af" onclick="tggleButton(this, afWave)">
+      </div>
+    </div>
+    <div class="unitbox" id="unitbox2"> <!-- SBP -->
+      <div class="sliderbox" id="sliderbox2">
+        <div class="slidershell" id="slidershell2"> <!--The outer positioning context for the divs it contains-->
+            <div class="sliderfill" id="sliderfill2"></div>
+            <div class="slidertrack" id="slidertrack2"></div>
+            <div class="sliderthumb" id="sliderthumb2"></div>
+            <div class="slidervalue" id="slidervalue2">0</div>
+            <input class="slider" id="slider2" type="range" orient="vertical" min="60" max="250" value="70"
+            oninput="showValue(value,2,true);" onchange="showValue(value,2,true);" style="background-color:yellow;"/>
+        </div>
+        <div class="bPmesureBox" id="bPmesureBox">
+          <input type="button" id="bPswitch" value="測定">
+        </div>
+      </div>
+
+    </div>
+    <div class="unitbox" id="unitbox3"> <!-- SpO2 -->
+      <div class="sliderbox" id="sliderbox3">
+        <div class="slidershell" id="slidershell3"> <!--The outer positioning context for the divs it contains-->
+            <div class="sliderfill" id="sliderfill3"></div>
+            <div class="slidertrack" id="slidertrack3"></div>
+            <div class="sliderthumb" id="sliderthumb3"></div>
+            <div class="slidervalue" id="slidervalue3">0</div>
+            <input class="slider" id="slider3" type="range" orient="vertical" min="70" max="100" value="70"
+            oninput="showValue(value,3,true);" onchange="showValue(value,3,true);" style="background-color:yellow;"/>
+        </div>
+      </div>
+    </div>
+    <div class="unitbox" id="unitbox4">
+      <div class="sliderbox" id="sliderbox4">
+        <div class="slidershell" id="slidershell4"> <!--The outer positioning context for the divs it contains-->
+            <div class="sliderfill" id="sliderfill4"></div>
+            <div class="slidertrack" id="slidertrack4"></div>
+            <div class="sliderthumb" id="sliderthumb4"></div>
+            <div class="slidervalue" id="slidervalue4">0</div>
+            <input class="slider" id="slider4" type="range" orient="vertical" min="4" max="30" value="70"
+            oninput="showValue(value,4,true);" onchange="showValue(value,4,true);" style="background-color:yellow;"/>
+        </div>
+      </div>
+      <div class="switchbox" id="switchbox4">
+        <input type="button" id="switchBtn41" value="失調" onclick="tggleButton(this, ataxia)">
+      </div>
+    </div>
+  </body>
+</html>

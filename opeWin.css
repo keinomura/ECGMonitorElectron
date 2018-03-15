@@ -1,8 +1,24 @@
+@charset 'utf-8';
+
 body {
 font-family: Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
 /*background-color: mediumpurple;*/}
+  .allConsole {
+    content: '';
+    display: block;
+    clear: both;
 
-
+  }
+  .leftConsole {
+    float: left;
+  }
+  .rightConsole {
+    float: left;
+  }
+  .caseNoSelect {
+    position: relative;
+  }
+   
   .miniDisplay {
     height: 300px;
     width: 400px;
@@ -96,6 +112,22 @@ font-family: Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Goth
     width: 40px;
     height: 300px;
   }
+  #unitbox5 {
+    float: left;
+    width: 70px;
+    height: 100%;
+  }
+
+  .displayAndVol::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  #switchbox5 {
+    height: 30px;
+  }
+
   #volControl{
       -webkit-appearance: none;
     background-color: green;
