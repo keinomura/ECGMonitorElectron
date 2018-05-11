@@ -46,6 +46,15 @@ var timeoutid = null // timeoutId for ECG display
 var timeoutid2 = null // timeoutId for resp display
 var switchOn = false
 
+function clickOnBPmonitor () {
+  document.getElementById('bpValueBox').onclick = function (e) {
+    document.getElementById('bPswitch').onclick()
+    if (document.getElementById('switchBtn51').checked) {
+      e.stopPropagation()
+    }
+  }
+}
+
 function toggleOnOffSwitch () { // start drawing, ringing,
 // => main.js => displayWindow
   switchOnIPC()
@@ -642,17 +651,24 @@ function newchangeToStanbyVal (datas) {
   showValue (datas.sBP, 2, true)
 
   var afBtn = document.getElementById('switchBtn1')
-  if (afBtn.checked !== datas.Af) { // af
+  var dataAfBool = function () {
+    return (datas.Af === 'true')
+  }
+  if (afBtn.checked !== dataAfBool()) { // af
+    console.log(afBtn.checked, datas.Af)
     tggleButton(afBtn, 'afWave')
   }
   var rRataxiaBtn = document.getElementById('switchBtn41')
-  if (rRataxiaBtn.checked !== datas.ataxia) { // ataxic resp
+  var dataAtaxiBool = function () {
+    return (datas.ataxia === 'true')
+  }
+  if (rRataxiaBtn.checked !== dataAtaxiBool()) { // ataxic resp
     tggleButton(rRataxiaBtn, 'ataxia')
   }
 
   // when change slowly
   console.log('slow is ', datas.slow_change)
-  if (datas.slow_change === true) {
+  if (datas.slow_change === 'true') {
     cElapsedSec = 0
     // make changing values arry / sec
     var cArg = newcreateArrDataEachSec(datas)
