@@ -38,7 +38,7 @@ window.addEventListener('contextmenu', function (e) {
   <div class="allConsole">
     <div class="leftConsole">
       <div class='displayAndVol'>
-        <div class='miniDisplay'>
+        <div class='miniDisplay' id='miniDisplay' onclick="document.getElementById('switchBtn51').click()">
           <div class="monitorHeader" style="font-size: 2vh;">ECG monitor for ISLS</div>
 
           <div class="monitorPanel">
@@ -63,7 +63,7 @@ window.addEventListener('contextmenu', function (e) {
                 <div class='valueText hRcolor textValueTitle'>ECG</div>
                 <div class='valueText hRcolor subtextValueTitle'>bpm</div> 
               </div>
-              <div class='eachValueBox'>
+              <div class='eachValueBox' id="bpValueBox" onclick="clickOnBPmonitor()">
                 <div class='yohaku' style="height: 10px"></div>
                 <div id='bPsmall' class='smallMonitorValue bPcolor' style="font-size: 2.5vh;">--- / ---</div>
                 <div class='valueText bPcolor textValueTitle'>NIBP</div>
@@ -100,7 +100,7 @@ window.addEventListener('contextmenu', function (e) {
               oninput="showValue(value,5,true);" onchange="showValue(value,5,true);" style="background-color:yellow;"/>
             </div>
           </div>
-          <div class="mainSwitchBox" id="switchbox5">
+          <div class="mainSwitchBox" id="switchbox5" style="display: none">
             <input type="button" id="switchBtn51" value="ON" onclick="tggleButton(this, 'onOff')">
           </div>
         </div>
@@ -221,7 +221,7 @@ window.addEventListener('contextmenu', function (e) {
                 <input class="slider" id="slider2" type="range" orient="vertical" min="60" max="250" value="70"
                 oninput="showValue(value,2,true);" onchange="showValue(value,2,true);" style="background-color:yellow;"/>
               </div>
-              <div class="bPmesureBox" id="bPmesureBox">
+              <div class="bPmesureBox" id="bPmesureBox" style="display: none;">
                 <input type="button" id="bPswitch" value="go" onclick="mesureBP()">
               </div>
             </div>
@@ -258,9 +258,16 @@ window.addEventListener('contextmenu', function (e) {
       </div>
     </div>
     <div class="rightConsole">
-        <div class="caseNoSelect" id="caseNoSelect" >
-            <select name="caseNoSorces" id="caseNoSorces" class="caseNoSorces" onchange="showVital(this)">
+        <div class="caseNoSelect" id="seriesSelectorDiv" >
+            <select name="seriesSelector" id="seriesSelector" class="caseNoSorces" onchange="showVital(this)">
             </select>
+          </div>
+          <div class="caseNoSelect" id="casesSelectorDiv" >
+            <select name="casesSelector" id="casesSelector" class="caseNoSorces" onchange="showVital(this)">
+            </select>
+          </div>
+          <div class="clearbutton" id="dbdeletebuttonDiv" style="display: none;">
+            <input type="button" name="dbdeletebutton" id="dbdeletebutton"  onclick="deleteDB()" style="width:50px">
           </div>
           <div class="caseTable" id="caseTablediv">
             <table id="caseTable">

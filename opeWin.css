@@ -36,6 +36,10 @@ font-family: Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Goth
 
     .monitorPanel {
       height: 80%;}
+      
+      #bpValueBox {
+        cursor: pointer;
+      }
 
     .monitorFooter {
       height: 10%;
