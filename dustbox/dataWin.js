@@ -6,7 +6,7 @@ var json = require('./sampleValues.json');
 console.log(json);
 
 
-//
+// function to run console datas
 function goButton(){
   var sBP = document.getElementById('sBP').value;
   var dBP = document.getElementById('dBP').value;

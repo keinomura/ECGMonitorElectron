@@ -1,56 +1,33 @@
 <!DOCTYPE html>
 <head>
-
-<title>disp window</title>
-<script type="text/javascript" src="displayWin.js"></script>
-<link rel="stylesheet" type="text/css" href="opeWin.css">
-
-<script>
-/*
-var main_win=window.opener;
-
-window.onload = function() {
-  if (main_win.document.getElementById('sButton').value == 'stop'){
-    var iniSpO2=main_win.document.getElementById('spO2');
-    var iniHR=main_win.document.getElementById('hR');
-    var iniBP=main_win.document.getElementById('bPdisplay');
-    console.log(iniSpO2.innerText);
-    document.getElementById('spO22').innerText = iniSpO2.innerText;
-    document.getElementById('hR2').innerText = iniHR.innerText;
-    document.getElementById('sub_BPDisplay').innerText = iniBP.innerText;
-
-    console.log (iniHR.innerText);
-  }
-};
-*/
-</script>
-
+  <title>disp window</title>
+  <script type="text/javascript" src="displayWin.js"></script>
+  <link rel="stylesheet" type="text/css" href="opeWin.css">
 </head>
 
 <body>
+  <div class='Display'>
+    <div class="monitorHeader">ECG monitor for ISLS v2.0</div>
+    <div class='yohaku' style="height: 20px"></div>
 
-<div class='Display'>
-  <div class="monitorHeader">ECG monitor for ISLS</div>
-  <div class='yohaku' style="height: 20px"></div>
-
-  <div class="monitorPanel">
-    <div class="waveMonitor">
-      <div class="canvasWrap">
-        <canvas class='canvas' id="hRCanvas2"></canvas>
+    <div class="monitorPanel">
+      <div class="waveMonitor">
+        <div class="canvasWrap">
+          <canvas class='canvas' id="hRCanvas2"></canvas>
+        </div>
+        <div class="canvasWrap">
+          <canvas class='canvas' id="spO2Canvas2" ></canvas>
+        </div>
+        <div class="canvasWrap">
+          <canvas class='canvas' id="respCanvas2"></canvas>
+        </div>
       </div>
-      <div class="canvasWrap">
-        <canvas class='canvas' id="spO2Canvas2" ></canvas>
-      </div>
-      <div class="canvasWrap">
-        <canvas class='canvas' id="respCanvas2"></canvas>
-      </div>
-    </div>
 
 
-    <div class="volumePanel">
-      <!--
-      Monitor elements
-        -->
+      <div class="volumePanel">
+        <!--
+        Monitor elements
+          -->
         <div class='eachValueBox'>
           <div class='yohaku' style="height: 10px"></div>
           <div id='hR2' class='mainMonitorValue hRcolor'>--</div>
@@ -69,20 +46,18 @@ window.onload = function() {
           <div class='subvalueText sPO2color textValueTitle'>SpO2</div>
           <div class='subvalueText sPO2color subWinsubtextValueTitle'>%</div> 
         </div>
-      <div class='eachValueBox'>
-        <div class='yohaku' style="height: 10px"></div>
-        <div id='rR2' class='mainMonitorValue respcolor'>--</div>
-        <div class='subvalueText respcolor textValueTitle'>Resp</div>
-        <div class='subvalueText respcolor subWinsubtextValueTitle'>rpm</div> 
-      </div> 
-
-        </div>
+        <div class='eachValueBox'>
+          <div class='yohaku' style="height: 10px"></div>
+          <div id='rR2' class='mainMonitorValue respcolor'>--</div>
+          <div class='subvalueText respcolor textValueTitle'>Resp</div>
+          <div class='subvalueText respcolor subWinsubtextValueTitle'>rpm</div> 
+        </div> 
+      </div>
     </div>
 
-    <div class="monitorFooter" style="font-size: 1vh;">
-    <div class="copyright" style="font-size: 2vh;margin-right:30px;text-align: right;color: mediumseagreen"> (c) 2017 Kei Nom / ISLS hamamatsu</div>
+      <div class="monitorFooter" style="font-size: 1vh;">
+      <div class="copyright" style="font-size: 2vh;margin-right:30px;text-align: right;color: mediumseagreen"> (c) 2017-2018 Kei Nom / ISLS hamamatsu</div>
+    </div>
   </div>
-</div>
-
 </body>
 </html>

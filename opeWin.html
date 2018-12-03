@@ -11,6 +11,15 @@
 <script type="text/javascript" src="newDataConsole.js" charset="UTF-8"></script>
 <link rel="stylesheet" type="text/css" href="newDataConsole.css">
 
+<script type="text/javascript" src="ipcCall.js" charset="UTF-8"></script>
+<script type="text/javascript" src="wave.js" charset="UTF-8"></script>
+<script type="text/javascript" src="qrsdetection.js" charset="UTF-8"></script>
+<script type="text/javascript" src="spO2wave.js" charset="UTF-8"></script>
+<script type="text/javascript" src="respWave.js" charset="UTF-8"></script>
+<script type="text/javascript" src="rrdetection.js" charset="UTF-8"></script>
+
+
+
 <script>
 const remote = require('electron').remote;
 const Menu = remote.Menu;
@@ -39,7 +48,7 @@ window.addEventListener('contextmenu', function (e) {
     <div class="leftConsole">
       <div class='displayAndVol'>
         <div class='miniDisplay' id='miniDisplay' onclick="document.getElementById('switchBtn51').click()">
-          <div class="monitorHeader" style="font-size: 2vh;">ECG monitor for ISLS</div>
+          <div class="monitorHeader" style="font-size: 2vh;">ECG monitor for ISLS <v2 class="0"></v2></div>
 
           <div class="monitorPanel">
             <div class="waveMonitor">
@@ -63,7 +72,7 @@ window.addEventListener('contextmenu', function (e) {
                 <div class='valueText hRcolor textValueTitle'>ECG</div>
                 <div class='valueText hRcolor subtextValueTitle'>bpm</div> 
               </div>
-              <div class='eachValueBox' id="bpValueBox" onclick="clickOnBPmonitor()">
+              <div class='eachValueBox' id="bpValueBox" onclick="clickOnBPmonitor(this)">
                 <div class='yohaku' style="height: 10px"></div>
                 <div id='bPsmall' class='smallMonitorValue bPcolor' style="font-size: 2.5vh;">--- / ---</div>
                 <div class='valueText bPcolor textValueTitle'>NIBP</div>
@@ -85,7 +94,7 @@ window.addEventListener('contextmenu', function (e) {
           </div>
 
           <div class="monitorFooter" style="font-size: 1vh;">
-            <div class="copyright" style="font-size: 1vh;margin:10px;text-align: right;"> (c) 2017-2018 Kei Nom</div>
+            <div class="copyright" style="font-size: 2vh;margin:20px;text-align: right;color: green"> (c) 2017-2018 Kei Nom</div>
           </div>
 
         </div>

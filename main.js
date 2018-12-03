@@ -24,7 +24,7 @@ function createWindow () {
     mainWin.show()
   }
   // devTool
-   mainWin.webContents.openDevTools()
+  mainWin.webContents.openDevTools()
 
   // when main window is closed
   mainWin.on('closed', function () {
@@ -51,7 +51,7 @@ function createsubWindow () {
   }
 
   // devTool
-  // subWin.webContents.openDevTools()
+  subWin.webContents.openDevTools()
 
   // when sub window is closed
   subWin.on('closed', function () {
@@ -76,7 +76,6 @@ function createdataWindow () {
   } else {
     dataWin.show()
   }
-  
 
   // devTool
   dataWin.webContents.openDevTools()
@@ -85,7 +84,7 @@ function createdataWindow () {
   dataWin.on('closed', function () {
     dataWin = null
   })
-  
+
 }
 */
 
@@ -94,7 +93,7 @@ function createdataWindow () {
 app.on('ready', () => {
   createWindow()
   createsubWindow()
-  //createdataWindow()
+  // createdataWindow()
 })
 
 // All window were closed
@@ -119,36 +118,27 @@ app.on('activate', function () {
 // ipc opeWin --> dispWin
 
 ipcMain.on('switchOntoMain', (event, arg) => {
-// console.log('received!')
-// console.log(arg)
   subWin.webContents.send('switch-on', arg)
-})
-
-ipcMain.on('afOn', (event, arg) => {
-  subWin.webContents.send('afOn', arg)
-})
-
-ipcMain.on('ataxiaOn', (event, arg) => {
-  subWin.webContents.send('ataxiaOn', arg)
-})
-
-ipcMain.on('valChange', (event, arg) => {
-  subWin.webContents.send('valChange', arg)
-})
-
-ipcMain.on('bPMesure', (event, arg) => {
-  subWin.webContents.send('bPMesure', arg)
 })
 
 ipcMain.on('changeToNextValue', (event, arg) => {
   mainWin.webContents.send('changeToNextValue', arg)
-  console.log('yes')
 })
 
-ipcMain.on('kickback', (event, arg) => {
-  console.log(arg)
+/// ///////////////////////
+/// //////////////////////
+
+ipcMain.on('subWinWavDisp', (event, arg) => {
+  subWin.webContents.send('subWinWavDisp', arg)
 })
 
+ipcMain.on('monitorClear', (event, arg) => {
+  subWin.webContents.send('monitorClear', arg)
+})
+
+ipcMain.on('displaySubWinVal', (event, arg) => {
+  subWin.webContents.send('displaySubWinVal', arg)
+})
 /// /////////////////
 // application menu
 

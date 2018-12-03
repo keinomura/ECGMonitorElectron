@@ -1,181 +1,138 @@
 {"vitalData":
-  [
-    {"Series":"Hamamatsu",
-      "Cases":[
-        {"CaseName": "Case1Hama",
-          "dataArry": [
-            {"subtitle": "搬入時", "hR": 85, "Af": false, "sBP": 156, "dBP": 99, "spO2": 98, "rR": 20, "ataxia": false, "time": 0, "slow_change": false},
-            {"subtitle": "CT前", "hR": 85, "Af": false, "sBP": 156, "dBP": 99, "spO2": 98, "rR": 20, "ataxia": false, "time": 0, "slow_change": false},
-            {"subtitle": "CT後", "hR": 85, "Af": false, "sBP": 156, "dBP": 99, "spO2": 98, "rR": 20, "ataxia": false, "time": 0, "slow_change": false}
-          ]
-        },
-        {"CaseName": "Case2Hama",
-          "dataArry": [
-            {"subtitle": "搬入時", "hR": 80, "Af": false, "sBP": 229, "dBP": 117, "spO2": 98, "rR": 15, "ataxia": false, "time": 0, "slow_change": false},
-            {"subtitle": "降圧", "hR": 85, "Af": false, "sBP": 135, "dBP": 75, "spO2": 98, "rR": 15, "ataxia": false, "time": 0, "slow_change": false}
-          ]
-        },
-        {"CaseName": "Case3Hama",
-          "dataArry": [
-            {"subtitle": "搬入時", "hR": 112, "Af": false, "sBP": 238, "dBP": 122, "spO2": 87, "rR": 4, "ataxia": true, "time": 0, "slow_change": false},
-            {"subtitle": "気道確保", "hR": 110, "Af": false, "sBP": 238, "dBP": 122, "spO2": 92, "rR": 4, "ataxia": true, "time": 3, "slow_change": true},
-            {"subtitle": "BVM換気", "hR": 110, "Af": false, "sBP": 240, "dBP": 125, "spO2": 98, "rR": 10, "ataxia": false, "time": 5, "slow_change": true},
-            {"subtitle": "挿管前降圧", "hR": 115, "Af": false, "sBP": 140, "dBP": 95, "spO2": 98, "rR": 10, "ataxia": false, "time": 0, "slow_change": true},
-            {"subtitle": "気管挿管 Crush", "hR": 110, "Af": false, "sBP": 240, "dBP": 125, "spO2": 100, "rR": 10, "ataxia": false, "time": 0, "slow_change": false},
-            {"subtitle": "気管挿管　RSI", "hR": 90, "Af": false, "sBP": 128, "dBP": 78, "spO2": 100, "rR": 10, "ataxia": false, "time": 0, "slow_change": false},
-            {"subtitle": "挿管後降圧", "hR": 95, "Af": false, "sBP": 128, "dBP": 78, "spO2": 100, "rR": 10, "ataxia": false, "time": 0, "slow_change": false}
-          ]
-        },
-        {"CaseName": "Case4Hama",
-          "dataArry": [
-            {"subtitle": "搬入時", "hR": 70, "Af": false, "sBP": 182, "dBP": 86, "spO2": 92, "rR": 14, "ataxia": true, "time": 0, "slow_change": false},
-            {"subtitle": "酸素投与", "hR": 68, "Af": false, "sBP": 180, "dBP": 80, "spO2": 100, "rR": 14, "ataxia": true, "time": 0, "slow_change": false},
-            {"subtitle": "降圧", "hR": 75, "Af": false, "sBP": 135, "dBP": 78, "spO2": 100, "rR": 14, "ataxia": false, "time": 3, "slow_change": true}
-          ]
-        },
-        {"CaseName": "Case5Hama",
-          "dataArry": [
-            {"subtitle": "搬入時", "hR": 85, "Af": true, "sBP": 219, "dBP": 130, "spO2": 95, "rR": 18, "ataxia": false, "time": 0, "slow_change": false},
-            {"subtitle": "降圧", "hR": 85, "Af": true, "sBP": 175, "dBP": 98, "spO2": 95, "rR": 18, "ataxia": false, "time": 0, "slow_change": false}
-          ]
-        },
-        {"CaseName": "Case6Hama",
-          "dataArry": [
-            {"subtitle": "搬入時", "hR": 80, "Af": true, "sBP": 165, "dBP": 80, "spO2": 98, "rR": 13, "ataxia": false, "time": 0, "slow_change": false}
-          ]
-        }
+      
+ [{"Series":"浜松","Cases":[{"CaseName":"CaseA","dataArry":[{"subtitle":"搬入時","hR":85,"Af":false,"sBP":156,"dBP":99,"spO2":98,"ataxia":false,"time":0,"slow_change":false},{"subtitle":"CT前","hR":85,"Af":false,"sBP":156,"dBP":99,"spO2":98,"ataxia":false,"time":0,"slow_change":false},{"subtitle":"CT後","hR":85,"Af":false,"sBP":156,"dBP":99,"spO2":98,"ataxia":false,"time":0,"slow_change":false}]},{"CaseName":"CaseB","dataArry":[{"subtitle":"搬入時","hR":90,"Af":false,"sBP":160,"dBP":90,"spO2":96,"rR":16,"ataxia":false,"time":0},{"subtitle":"降圧","hR":93,"Af":false,"sBP":135,"dBP":75,"spO2":96,"rR":16,"ataxia":false,"time":0}]},{"CaseName":"CaseC","dataArry":[{"subtitle":"搬入時","hR":115,"Af":false,"sBP":240,"dBP":120,"spO2":85,"rR":4,"ataxia":true,"time":0},{"subtitle":"気道確保","hR":110,"Af":false,"sBP":238,"dBP":122,"spO2":92,"rR":4,"ataxia":true,"time":3},{"subtitle":"BVM換気","hR":110,"Af":false,"sBP":240,"dBP":125,"spO2":98,"rR":10,"ataxia":false,"time":5},{"subtitle":"挿管前降圧","hR":115,"Af":false,"sBP":140,"dBP":95,"spO2":98,"rR":10,"ataxia":false,"time":0},{"subtitle":"気管挿管 Crush","hR":110,"Af":false,"sBP":240,"dBP":125,"spO2":100,"rR":10,"ataxia":false,"time":0},{"subtitle":"気管挿管　RSI","hR":90,"Af":false,"sBP":128,"dBP":78,"spO2":100,"rR":10,"ataxia":false,"time":0},{"subtitle":"挿管後降圧","hR":95,"Af":false,"sBP":128,"dBP":78,"spO2":100,"rR":10,"ataxia":false,"time":0}]},{"CaseName":"CaseD","dataArry":[{"subtitle":"搬入時","hR":70,"Af":false,"sBP":182,"dBP":86,"spO2":92,"rR":14,"ataxia":true,"time":0},{"subtitle":"酸素投与","hR":68,"Af":false,"sBP":180,"dBP":80,"spO2":100,"rR":14,"ataxia":true,"time":0},{"subtitle":"降圧","hR":75,"Af":false,"sBP":135,"dBP":78,"spO2":100,"rR":14,"ataxia":false,"time":3}]},{"CaseName":"CaseE","dataArry":[{"subtitle":"搬入時(BVM)","hR":98,"Af":true,"sBP":100,"dBP":54,"spO2":93,"rR":10,"ataxia":false,"time":0},{"subtitle":"挿管RSI","hR":85,"Af":true,"sBP":95,"dBP":70,"spO2":99,"rR":12,"ataxia":false,"time":0},{"subtitle":"挿管Crush","hR":100,"Af":true,"sBP":110,"dBP":68,"spO2":99,"rR":12,"ataxia":false,"time":0}]},{"CaseName":"CaseF","dataArry":[{"subtitle":"搬入時","hR":100,"Af":true,"sBP":210,"dBP":120,"spO2":98,"rR":18,"ataxia":false,"time":0},{"subtitle":"降圧","hR":105,"Af":true,"sBP":168,"dBP":80,"spO2":98,"rR":18,"ataxia":false,"time":0}]}]},{"Series":"2018","Cases":[{"CaseName":"Case1","dataArry":[{"subtitle":"搬入時(BP右)","hR":57,"Af":false,"sBP":140,"dBP":80,"spO2":98,"rR":16,"ataxia":false,"time":0},{"subtitle":"搬入時(BP左)","hR":57,"Af":false,"sBP":133,"dBP":72,"spO2":98,"rR":16,"ataxia":false,"time":0}]},{"CaseName":"Case2","dataArry":[{"subtitle":"搬入時(BP右)","hR":106,"Af":true,"sBP":157,"dBP":93,"spO2":94,"rR":29,"ataxia":false,"time":0},{"subtitle":"搬入時(BP左)","hR":106,"Af":true,"sBP":137,"dBP":99,"spO2":94,"rR":29,"ataxia":false,"time":0}]},{"CaseName":"Case3","dataArry":[{"subtitle":"搬入時(BP右)","hR":74,"Af":false,"sBP":136,"dBP":87,"spO2":94,"rR":18,"ataxia":false,"time":0},{"subtitle":"O2開始","hR":74,"Af":false,"sBP":137,"dBP":99,"spO2":97,"rR":18,"ataxia":false,"time":0}]},{"CaseName":"Case4","dataArry":[{"subtitle":"搬入時","hR":80,"Af":false,"sBP":156,"dBP":99,"spO2":98,"rR":20,"ataxia":false,"time":0},{"subtitle":"CT後","hR":80,"Af":false,"sBP":140,"dBP":95,"spO2":98,"rR":20,"ataxia":false,"time":0}]},{"CaseName":"Case5","dataArry":[{"subtitle":"搬入時","hR":50,"Af":true,"sBP":162,"dBP":84,"spO2":100,"rR":18,"ataxia":false,"time":0}]},{"CaseName":"Case6","dataArry":[{"subtitle":"搬入時","hR":70,"Af":false,"sBP":215,"dBP":103,"spO2":97,"rR":16,"ataxia":false,"time":0},{"subtitle":"降圧後","hR":75,"Af":false,"sBP":180,"dBP":105,"spO2":97,"rR":16,"ataxia":false,"time":0}]},{"CaseName":"Case7","dataArry":[{"subtitle":"搬入時","hR":80,"Af":true,"sBP":165,"dBP":80,"spO2":98,"rR":13,"ataxia":false,"time":0},{"subtitle":"血圧上昇","hR":80,"Af":true,"sBP":196,"dBP":104,"spO2":98,"rR":13,"ataxia":false,"time":0},{"subtitle":"降圧後","hR":85,"Af":true,"sBP":155,"dBP":82,"spO2":98,"rR":13,"ataxia":false,"time":0}]},{"CaseName":"Case8","dataArry":[{"subtitle":"搬入時","hR":80,"Af":false,"sBP":182,"dBP":86,"spO2":95,"rR":14,"ataxia":false,"time":0},{"subtitle":"降圧後","hR":85,"Af":false,"sBP":138,"dBP":68,"spO2":95,"rR":14,"ataxia":false,"time":0}]},{"CaseName":"Case9","dataArry":[{"subtitle":"搬入時","hR":110,"Af":false,"sBP":185,"dBP":100,"spO2":95,"rR":17,"ataxia":false,"time":0},{"subtitle":"降圧後","hR":115,"Af":false,"sBP":135,"dBP":65,"spO2":98,"rR":17,"ataxia":false,"time":0}]},{"CaseName":"Case10","dataArry":[{"subtitle":"搬入時","hR":64,"Af":false,"sBP":146,"dBP":92,"spO2":98,"rR":14,"ataxia":false,"time":0},{"subtitle":"右血圧","hR":64,"Af":false,"sBP":172,"dBP":94,"spO2":99,"rR":14,"ataxia":false,"time":0},{"subtitle":"左血圧","hR":64,"Af":false,"sBP":110,"dBP":58,"spO2":99,"rR":14,"ataxia":false,"time":0}]},{"CaseName":"Case11","dataArry":[{"subtitle":"搬入時","hR":80,"Af":false,"sBP":172,"dBP":87,"spO2":98,"rR":22,"ataxia":false,"time":0},{"subtitle":"降圧後","hR":85,"Af":false,"sBP":130,"dBP":78,"spO2":98,"rR":22,"ataxia":false,"time":0}]},{"CaseName":"Case12","dataArry":[{"subtitle":"搬入時","hR":70,"Af":false,"sBP":217,"dBP":100,"spO2":98,"rR":16,"ataxia":false,"time":0},{"subtitle":"降圧後","hR":80,"Af":false,"sBP":138,"dBP":78,"spO2":98,"rR":16,"ataxia":false,"time":0}]},{"CaseName":"Case13","dataArry":[{"subtitle":"搬入時","hR":95,"Af":false,"sBP":202,"dBP":103,"spO2":75,"rR":8,"ataxia":true,"time":0},{"subtitle":"挿管後(CRUSH)","hR":95,"Af":false,"sBP":202,"dBP":103,"spO2":100,"rR":12,"ataxia":false,"time":0},{"subtitle":"挿管後降圧後","hR":95,"Af":false,"sBP":135,"dBP":80,"spO2":100,"rR":12,"ataxia":false,"time":0}]},{"CaseName":"Case14","dataArry":[{"subtitle":"搬入時","hR":116,"Af":false,"sBP":238,"dBP":122,"spO2":87,"rR":4,"ataxia":true,"time":0},{"subtitle":"BVM","hR":116,"Af":false,"sBP":238,"dBP":122,"spO2":92,"rR":10,"ataxia":false,"time":3},{"subtitle":"気管挿管(RSI)","hR":116,"Af":false,"sBP":182,"dBP":90,"spO2":100,"rR":12,"ataxia":false,"time":3},{"subtitle":"気管挿管(CRUSH)","hR":116,"Af":false,"sBP":220,"dBP":120,"spO2":100,"rR":12,"ataxia":false,"time":3},{"subtitle":"降圧後","hR":120,"Af":false,"sBP":135,"dBP":80,"spO2":100,"rR":12,"ataxia":false,"time":0}]},{"CaseName":"Case15","dataArry":[{"subtitle":"搬入時","hR":90,"Af":false,"sBP":230,"dBP":120,"spO2":92,"rR":20,"ataxia":true,"time":0},{"subtitle":"BVM","hR":90,"Af":false,"sBP":230,"dBP":120,"spO2":96,"rR":20,"ataxia":false,"time":3},{"subtitle":"気管挿管(RSI)","hR":116,"Af":false,"sBP":160,"dBP":95,"spO2":100,"rR":14,"ataxia":false,"time":3},{"subtitle":"気管挿管(CRUSH)","hR":116,"Af":false,"sBP":220,"dBP":120,"spO2":100,"rR":14,"ataxia":false,"time":3},{"subtitle":"降圧後","hR":120,"Af":false,"sBP":135,"dBP":80,"spO2":100,"rR":12,"ataxia":false,"time":0}]},{"CaseName":"Case16","dataArry":[{"subtitle":"搬入時","hR":95,"Af":false,"sBP":144,"dBP":71,"spO2":100,"rR":16,"ataxia":false,"time":0},{"subtitle":"降圧後","hR":75,"Af":false,"sBP":135,"dBP":86,"spO2":100,"rR":16,"ataxia":false,"time":0}]}]}
+,
+{"Series": "2013", 
+  "Cases":[
+    {"CaseName": "Case2",
+      "dataArry": [
+        {"subtitle":"搬入時","hR":80,"Af":false,"sBP":156,"dBP":99,"spO2":98,"rR":20,"ataxia":false,"time":0,"slow_change":false},
+        {"subtitle":"CT後","hR":80,"Af":false,"sBP":140,"dBP":95,"spO2":98,"rR":20,"ataxia":false,"time":0,"slow_change":false}]
+    },
+    {"CaseName": "Case2",
+      "dataArry": [
+        {"subtitle":"搬入時","hR":80,"Af":false,"sBP":176,"dBP":77,"spO2":96,"rR":18,"ataxia":false,"time":0,"slow_change":false}
       ]
-    }, 
-    {"Series": "2013", 
-      "Cases":[
-        {"CaseName": "Case1",
-          "dataArry": [
-            {"subtitle":"搬入時","hR":80,"Af":false,"sBP":156,"dBP":99,"spO2":98,"rR":20,"ataxia":false,"time":0,"slow_change":false},
-            {"subtitle":"CT後","hR":80,"Af":false,"sBP":140,"dBP":95,"spO2":98,"rR":20,"ataxia":false,"time":0,"slow_change":false}]
-        },
-        {"CaseName": "Case2",
-          "dataArry": [
-            {"subtitle":"搬入時","hR":80,"Af":false,"sBP":176,"dBP":77,"spO2":96,"rR":18,"ataxia":false,"time":0,"slow_change":false}
-          ]
-        },
-        {"CaseName": "Case3",
-          "dataArry": [
-            {"subtitle":"搬入時","hR":50,"Af":false,"sBP":132,"dBP":87,"spO2":99,"rR":18,"ataxia":false,"time":0,"slow_change":false}
-          ]
-        },
-        {"CaseName": "Case4",
-          "dataArry": [
-            {"subtitle":"搬入時","hR":85,"Af":true,"sBP":219,"dBP":130,"spO2":95,"rR":18,"ataxia":false,"time":0,"slow_change":false},
-            {"subtitle":"降圧後","hR":90,"Af":true,"sBP":170,"dBP":95,"spO2":95,"rR":18,"ataxia":false,"time":0,"slow_change":false}
-          ]
-        },
-        {"CaseName": "Case5",
-          "dataArry": [
-            {"subtitle":"搬入時","hR":50,"Af":true,"sBP":162,"dBP":84,"spO2":100,"rR":18,"ataxia":false,"time":0,"slow_change":false}
-          ]
-        },
-        {"CaseName": "Case6",
-          "dataArry": [
-            {"subtitle":"搬入時","hR":80,"Af":false,"sBP":182,"dBP":86,"spO2":95,"rR":14,"ataxia":false,"time":0,"slow_change":false},
-            {"subtitle":"降圧後","hR":85,"Af":false,"sBP":138,"dBP":68,"spO2":95,"rR":14,"ataxia":false,"time":0,"slow_change":false}
-          ]
-        },
-        {"CaseName": "Case7",
-          "dataArry": [
-            {"subtitle":"搬入時","hR":65,"Af":false,"sBP":166,"dBP":108,"spO2":97,"rR":18,"ataxia":false,"time":0,"slow_change":false},
-            {"subtitle":"降圧後","hR":75,"Af":false,"sBP":135,"dBP":68,"spO2":97,"rR":18,"ataxia":false,"time":0,"slow_change":false}
-          ]
-        },
-        {"CaseName": "Case8",
-          "dataArry": [
-            {"subtitle":"搬入時","hR":110,"Af":false,"sBP":185,"dBP":100,"spO2":95,"rR":17,"ataxia":false,"time":0,"slow_change":false},
-            {"subtitle":"降圧後","hR":115,"Af":false,"sBP":135,"dBP":65,"spO2":98,"rR":17,"ataxia":false,"time":0,"slow_change":false}
-          ]
-        },
-        {"CaseName": "Case9",
-          "dataArry": [
-            {"subtitle":"搬入時","hR":80,"Af":false,"sBP":189,"dBP":91,"spO2":99,"rR":24,"ataxia":false,"time":0,"slow_change":false},
-            {"subtitle":"降圧後","hR":8,"Af":false,"sBP":135,"dBP":65,"spO2":99,"rR":24,"ataxia":false,"time":0,"slow_change":false}
-          ]
-        },
-        {"CaseName": "Case10",
-          "dataArry": [
-            {"subtitle":"搬入時","hR":64,"Af":false,"sBP":146,"dBP":92,"spO2":98,"rR":14,"ataxia":false,"time":0,"slow_change":false},
-            {"subtitle":"右血圧","hR":64,"Af":false,"sBP":172,"dBP":94,"spO2":99,"rR":14,"ataxia":false,"time":0,"slow_change":false},
-            {"subtitle":"左血圧","hR":64,"Af":false,"sBP":110,"dBP":58,"spO2":99,"rR":14,"ataxia":false,"time":0,"slow_change":false}
-          ]
-        },
-        {"CaseName": "Case11",
-          "dataArry": [
-            {"subtitle":"搬入時","hR":80,"Af":false,"sBP":172,"dBP":87,"spO2":98,"rR":22,"ataxia":false,"time":0,"slow_change":false},
-            {"subtitle":"降圧後","hR":85,"Af":false,"sBP":130,"dBP":78,"spO2":98,"rR":22,"ataxia":false,"time":0,"slow_change":false}
-          ]
-        },
-        {"CaseName": "Case12",
-          "dataArry": [{"subtitle":"搬入時","hR":80,"Af":false,"sBP":229,"dBP":117,"spO2":88,"rR":16,"ataxia":false,"time":0,"slow_change":false},
-            {"subtitle":"O2開始","hR":80,"Af":false,"sBP":229,"dBP":117,"spO2":94,"rR":16,"ataxia":false,"time":3,"slow_change":true},
-            {"subtitle":"挿管後(RSI)","hR":80,"Af":false,"sBP":160,"dBP":85,"spO2":100,"rR":12,"ataxia":false,"time":0,"slow_change":false},
-            {"subtitle":"挿管後降圧後","hR":80,"Af":false,"sBP":135,"dBP":80,"spO2":100,"rR":12,"ataxia":false,"time":0,"slow_change":false}
-          ]
-        },
-        {"CaseName": "Case13",
-          "dataArry": [
-            {"subtitle":"搬入時","hR":70,"Af":false,"sBP":217,"dBP":100,"spO2":98,"rR":16,"ataxia":false,"time":0,"slow_change":false},
-            {"subtitle":"降圧後","hR":80,"Af":false,"sBP":138,"dBP":78,"spO2":98,"rR":16,"ataxia":false,"time":0,"slow_change":true}
-          ]
-        },
-        {"CaseName": "Case14",
-          "dataArry": [
-            {"subtitle":"搬入時","hR":95,"Af":false,"sBP":202,"dBP":103,"spO2":75,"rR":8,"ataxia":true,"time":0,"slow_change":false},
-            {"subtitle":"挿管後(CRUSH)","hR":95,"Af":false,"sBP":202,"dBP":103,"spO2":100,"rR":12,"ataxia":false,"time":0,"slow_change":false},
-            {"subtitle":"挿管後降圧後","hR":95,"Af":false,"sBP":135,"dBP":80,"spO2":100,"rR":12,"ataxia":false,"time":0,"slow_change":false}
-          ]
-        },
-        {"CaseName": "Case15",
-          "dataArry": [
-            {"subtitle":"搬入時","hR":70,"Af":false,"sBP":215,"dBP":103,"spO2":97,"rR":16,"ataxia":false,"time":0,"slow_change":false},
-            {"subtitle":"降圧後","hR":75,"Af":false,"sBP":180,"dBP":105,"spO2":97,"rR":16,"ataxia":false,"time":0,"slow_change":false}
-          ]
-        },
-        {"CaseName": "Case16",
-          "dataArry": [
-            {"subtitle":"搬入時","hR":95,"Af":false,"sBP":144,"dBP":71,"spO2":100,"rR":16,"ataxia":false,"time":0,"slow_change":false},
-            {"subtitle":"降圧後","hR":75,"Af":false,"sBP":135,"dBP":86,"spO2":100,"rR":16,"ataxia":false,"time":0,"slow_change":false}
-          ]
-        },
-        {"CaseName": "Case17",
-          "dataArry": [
-            {"subtitle":"搬入時","hR":116,"Af":false,"sBP":238,"dBP":122,"spO2":87,"rR":4,"ataxia":true,"time":0,"slow_change":false},
-            {"subtitle":"BVM","hR":116,"Af":false,"sBP":238,"dBP":122,"spO2":92,"rR":10,"ataxia":false,"time":3,"slow_change":true},
-            {"subtitle":"気管挿管(RSI)","hR":116,"Af":false,"sBP":182,"dBP":90,"spO2":100,"rR":12,"ataxia":false,"time":3,"slow_change":true},
-            {"subtitle":"気管挿管(CRUSH)","hR":116,"Af":false,"sBP":220,"dBP":120,"spO2":100,"rR":12,"ataxia":false,"time":3,"slow_change":true},
-            {"subtitle":"降圧後","hR":120,"Af":false,"sBP":135,"dBP":80,"spO2":100,"rR":12,"ataxia":false,"time":0,"slow_change":false}
-          ]
-        },
-        {"CaseName": "Case18",
-          "dataArry": [
-            {"subtitle":"搬入時","hR":90,"Af":false,"sBP":230,"dBP":120,"spO2":92,"rR":20,"ataxia":true,"time":0,"slow_change":false},
-            {"subtitle":"BVM","hR":90,"Af":false,"sBP":230,"dBP":120,"spO2":96,"rR":20,"ataxia":false,"time":3,"slow_change":true},
-            {"subtitle":"気管挿管(RSI)","hR":116,"Af":false,"sBP":160,"dBP":95,"spO2":100,"rR":14,"ataxia":false,"time":3,"slow_change":true},
-            {"subtitle":"気管挿管(CRUSH)","hR":116,"Af":false,"sBP":220,"dBP":120,"spO2":100,"rR":14,"ataxia":false,"time":3,"slow_change":true},
-            {"subtitle":"降圧後","hR":120,"Af":false,"sBP":135,"dBP":80,"spO2":100,"rR":12,"ataxia":false,"time":0,"slow_change":false}
-          ]
-        },
-        {"CaseName": "Case19",
-          "dataArry": [
-            {"subtitle":"搬入時","hR":80,"Af":true,"sBP":165,"dBP":80,"spO2":98,"rR":13,"ataxia":false,"time":0,"slow_change":false},
-            {"subtitle":"血圧上昇","hR":80,"Af":true,"sBP":196,"dBP":104,"spO2":98,"rR":13,"ataxia":false,"time":0,"slow_change":false},
-            {"subtitle":"降圧後","hR":85,"Af":true,"sBP":155,"dBP":82,"spO2":98,"rR":13,"ataxia":false,"time":0,"slow_change":false}
-          ]
-        },
-        {"CaseName": "Case20",
-          "dataArry": [
-            {"subtitle":"搬入時","hR":98,"Af":false,"sBP":100,"dBP":82,"spO2":88,"rR":0,"ataxia":false,"time":0,"slow_change":false},
-            {"subtitle":"BVM","hR":98,"Af":false,"sBP":100,"dBP":82,"spO2":90,"rR":14,"ataxia":false,"time":3,"slow_change":true},
-            {"subtitle":"挿管(crush)","hR":96,"Af":false,"sBP":105,"dBP":85,"spO2":96,"rR":14,"ataxia":false,"time":2,"slow_change":true}
-          ]
-        }
+    },
+    {"CaseName": "Case3",
+      "dataArry": [
+        {"subtitle":"搬入時","hR":50,"Af":false,"sBP":132,"dBP":87,"spO2":99,"rR":18,"ataxia":false,"time":0,"slow_change":false}
+      ]
+    },
+    {"CaseName": "Case4",
+      "dataArry": [
+        {"subtitle":"搬入時","hR":85,"Af":true,"sBP":219,"dBP":130,"spO2":95,"rR":18,"ataxia":false,"time":0,"slow_change":false},
+        {"subtitle":"降圧後","hR":90,"Af":true,"sBP":170,"dBP":95,"spO2":95,"rR":18,"ataxia":false,"time":0,"slow_change":false}
+      ]
+    },
+    {"CaseName": "Case5",
+      "dataArry": [
+        {"subtitle":"搬入時","hR":50,"Af":true,"sBP":162,"dBP":84,"spO2":100,"rR":18,"ataxia":false,"time":0,"slow_change":false}
+      ]
+    },
+    {"CaseName": "Case6",
+      "dataArry": [
+        {"subtitle":"搬入時","hR":80,"Af":false,"sBP":182,"dBP":86,"spO2":95,"rR":14,"ataxia":false,"time":0,"slow_change":false},
+        {"subtitle":"降圧後","hR":85,"Af":false,"sBP":138,"dBP":68,"spO2":95,"rR":14,"ataxia":false,"time":0,"slow_change":false}
+      ]
+    },
+    {"CaseName": "Case7",
+      "dataArry": [
+        {"subtitle":"搬入時","hR":65,"Af":false,"sBP":166,"dBP":108,"spO2":97,"rR":18,"ataxia":false,"time":0,"slow_change":false},
+        {"subtitle":"降圧後","hR":75,"Af":false,"sBP":135,"dBP":68,"spO2":97,"rR":18,"ataxia":false,"time":0,"slow_change":false}
+      ]
+    },
+    {"CaseName": "Case8",
+      "dataArry": [
+        {"subtitle":"搬入時","hR":110,"Af":false,"sBP":185,"dBP":100,"spO2":95,"rR":17,"ataxia":false,"time":0,"slow_change":false},
+        {"subtitle":"降圧後","hR":115,"Af":false,"sBP":135,"dBP":65,"spO2":98,"rR":17,"ataxia":false,"time":0,"slow_change":false}
+      ]
+    },
+    {"CaseName": "Case9",
+      "dataArry": [
+        {"subtitle":"搬入時","hR":80,"Af":false,"sBP":189,"dBP":91,"spO2":99,"rR":24,"ataxia":false,"time":0,"slow_change":false},
+        {"subtitle":"降圧後","hR":8,"Af":false,"sBP":135,"dBP":65,"spO2":99,"rR":24,"ataxia":false,"time":0,"slow_change":false}
+      ]
+    },
+    {"CaseName": "Case10",
+      "dataArry": [
+        {"subtitle":"搬入時","hR":64,"Af":false,"sBP":146,"dBP":92,"spO2":98,"rR":14,"ataxia":false,"time":0,"slow_change":false},
+        {"subtitle":"右血圧","hR":64,"Af":false,"sBP":172,"dBP":94,"spO2":99,"rR":14,"ataxia":false,"time":0,"slow_change":false},
+        {"subtitle":"左血圧","hR":64,"Af":false,"sBP":110,"dBP":58,"spO2":99,"rR":14,"ataxia":false,"time":0,"slow_change":false}
+      ]
+    },
+    {"CaseName": "Case11",
+      "dataArry": [
+        {"subtitle":"搬入時","hR":80,"Af":false,"sBP":172,"dBP":87,"spO2":98,"rR":22,"ataxia":false,"time":0,"slow_change":false},
+        {"subtitle":"降圧後","hR":85,"Af":false,"sBP":130,"dBP":78,"spO2":98,"rR":22,"ataxia":false,"time":0,"slow_change":false}
+      ]
+    },
+    {"CaseName": "Case12",
+      "dataArry": [{"subtitle":"搬入時","hR":80,"Af":false,"sBP":229,"dBP":117,"spO2":88,"rR":16,"ataxia":false,"time":0,"slow_change":false},
+        {"subtitle":"O2開始","hR":80,"Af":false,"sBP":229,"dBP":117,"spO2":94,"rR":16,"ataxia":false,"time":3,"slow_change":true},
+        {"subtitle":"挿管後(RSI)","hR":80,"Af":false,"sBP":160,"dBP":85,"spO2":100,"rR":12,"ataxia":false,"time":0,"slow_change":false},
+        {"subtitle":"挿管後降圧後","hR":80,"Af":false,"sBP":135,"dBP":80,"spO2":100,"rR":12,"ataxia":false,"time":0,"slow_change":false}
+      ]
+    },
+    {"CaseName": "Case13",
+      "dataArry": [
+        {"subtitle":"搬入時","hR":70,"Af":false,"sBP":217,"dBP":100,"spO2":98,"rR":16,"ataxia":false,"time":0,"slow_change":false},
+        {"subtitle":"降圧後","hR":80,"Af":false,"sBP":138,"dBP":78,"spO2":98,"rR":16,"ataxia":false,"time":0,"slow_change":true}
+      ]
+    },
+    {"CaseName": "Case14",
+      "dataArry": [
+        {"subtitle":"搬入時","hR":95,"Af":false,"sBP":202,"dBP":103,"spO2":75,"rR":8,"ataxia":true,"time":0,"slow_change":false},
+        {"subtitle":"挿管後(CRUSH)","hR":95,"Af":false,"sBP":202,"dBP":103,"spO2":100,"rR":12,"ataxia":false,"time":0,"slow_change":false},
+        {"subtitle":"挿管後降圧後","hR":95,"Af":false,"sBP":135,"dBP":80,"spO2":100,"rR":12,"ataxia":false,"time":0,"slow_change":false}
+      ]
+    },
+    {"CaseName": "Case15",
+      "dataArry": [
+        {"subtitle":"搬入時","hR":70,"Af":false,"sBP":215,"dBP":103,"spO2":97,"rR":16,"ataxia":false,"time":0,"slow_change":false},
+        {"subtitle":"降圧後","hR":75,"Af":false,"sBP":180,"dBP":105,"spO2":97,"rR":16,"ataxia":false,"time":0,"slow_change":false}
+      ]
+    },
+    {"CaseName": "Case16",
+      "dataArry": [
+        {"subtitle":"搬入時","hR":95,"Af":false,"sBP":144,"dBP":71,"spO2":100,"rR":16,"ataxia":false,"time":0,"slow_change":false},
+        {"subtitle":"降圧後","hR":75,"Af":false,"sBP":135,"dBP":86,"spO2":100,"rR":16,"ataxia":false,"time":0,"slow_change":false}
+      ]
+    },
+    {"CaseName": "Case17",
+      "dataArry": [
+        {"subtitle":"搬入時","hR":116,"Af":false,"sBP":238,"dBP":122,"spO2":87,"rR":4,"ataxia":true,"time":0,"slow_change":false},
+        {"subtitle":"BVM","hR":116,"Af":false,"sBP":238,"dBP":122,"spO2":92,"rR":10,"ataxia":false,"time":3,"slow_change":true},
+        {"subtitle":"気管挿管(RSI)","hR":116,"Af":false,"sBP":182,"dBP":90,"spO2":100,"rR":12,"ataxia":false,"time":3,"slow_change":true},
+        {"subtitle":"気管挿管(CRUSH)","hR":116,"Af":false,"sBP":220,"dBP":120,"spO2":100,"rR":12,"ataxia":false,"time":3,"slow_change":true},
+        {"subtitle":"降圧後","hR":120,"Af":false,"sBP":135,"dBP":80,"spO2":100,"rR":12,"ataxia":false,"time":0,"slow_change":false}
+      ]
+    },
+    {"CaseName": "Case18",
+      "dataArry": [
+        {"subtitle":"搬入時","hR":90,"Af":false,"sBP":230,"dBP":120,"spO2":92,"rR":20,"ataxia":true,"time":0,"slow_change":false},
+        {"subtitle":"BVM","hR":90,"Af":false,"sBP":230,"dBP":120,"spO2":96,"rR":20,"ataxia":false,"time":3,"slow_change":true},
+        {"subtitle":"気管挿管(RSI)","hR":116,"Af":false,"sBP":160,"dBP":95,"spO2":100,"rR":14,"ataxia":false,"time":3,"slow_change":true},
+        {"subtitle":"気管挿管(CRUSH)","hR":116,"Af":false,"sBP":220,"dBP":120,"spO2":100,"rR":14,"ataxia":false,"time":3,"slow_change":true},
+        {"subtitle":"降圧後","hR":120,"Af":false,"sBP":135,"dBP":80,"spO2":100,"rR":12,"ataxia":false,"time":0,"slow_change":false}
+      ]
+    },
+    {"CaseName": "Case19",
+      "dataArry": [
+        {"subtitle":"搬入時","hR":80,"Af":true,"sBP":165,"dBP":80,"spO2":98,"rR":13,"ataxia":false,"time":0,"slow_change":false},
+        {"subtitle":"血圧上昇","hR":80,"Af":true,"sBP":196,"dBP":104,"spO2":98,"rR":13,"ataxia":false,"time":0,"slow_change":false},
+        {"subtitle":"降圧後","hR":85,"Af":true,"sBP":155,"dBP":82,"spO2":98,"rR":13,"ataxia":false,"time":0,"slow_change":false}
+      ]
+    },
+    {"CaseName": "Case20",
+      "dataArry": [
+        {"subtitle":"搬入時","hR":98,"Af":false,"sBP":100,"dBP":82,"spO2":88,"rR":0,"ataxia":false,"time":0,"slow_change":false},
+        {"subtitle":"BVM","hR":98,"Af":false,"sBP":100,"dBP":82,"spO2":90,"rR":14,"ataxia":false,"time":3,"slow_change":true},
+        {"subtitle":"挿管(crush)","hR":96,"Af":false,"sBP":105,"dBP":85,"spO2":96,"rR":14,"ataxia":false,"time":2,"slow_change":true}
       ]
     }
   ]
 }
+
+
+ ]}
