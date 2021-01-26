@@ -20,7 +20,6 @@ function connectDB () {
     // onupgradeneededは、DBのバージョン更新(DBの新規作成も含む)時のみ実行
 
     deleteDB()
-    console.log('deleteDB sucusess')
     // objectStoreで変数はあまり使えない。StoreはoriginalStore, userStoreの2つ
 
     var db = event.target.result
@@ -30,15 +29,14 @@ function connectDB () {
     // add all Series datas to original Store
     for (var i in seriesArry) {
       originalStore.add(seriesArry[i])
-      console.log('add!')
     }
 
     // debug when upgrade
     originalStore.openCursor().onsuccess = function (event) {
       var cursor = event.target.result
       if (cursor) {
-        console.log('cursor key is ', cursor.key)
-        console.log('cursor is', cursor)
+        // console.log('cursor key is ', cursor.key)
+        // console.log('cursor is', cursor)
         cursor.continue()
       }
     }
@@ -56,7 +54,7 @@ function connectDB () {
       var cursor = event.target.result
       var val = cursor.value
       var seri = val.Series
-      console.log(cursor, 'val is ', val, 'Series is', seri)
+      // console.log(cursor, 'val is ', val, 'Series is', seri)
     }
 
     // console.log(originalStore.openCursor())
@@ -65,7 +63,7 @@ function connectDB () {
   }
   openReq.onerror = function (event) {
     // 接続に失敗
-    console.log('db open error')
+    // console.log('db open error')
   }
 }
 
@@ -91,20 +89,23 @@ function createSeriesSelector () {
     var transaction = db.transaction(['original'], 'readwrite')
     var originalStore = transaction.objectStore('original')
 
+    // test code
+    var request = originalStore.get('2013')
+    var case_request = request.get('Case6')
+    console.log(case_request.dataArry)
+    //
+
+
     var allDataArry = []
     originalStore.openCursor().onsuccess = function (event) {
       // series selector
       var getSeriesSelectorOption = function () {
         var cursor = event.target.result
         if (cursor) {
-          // var aOption = cursor.key
-          // console.log(aOption)
-          console.log(cursor.value)
           allDataArry.push(cursor.value)
           cursor.continue()
         } else {
           // cursor end
-          console.log('chidlArry is ', allDataArry)
           var createdSelector = createSelector(allDataArry, 'seriesSelector', 'Series', function () { createCasesSelector(allDataArry) })
           seriesSlectorDiv.appendChild(createdSelector)
           createCasesSelector(allDataArry)
@@ -151,7 +152,6 @@ function createCasesSelector (allDataArry) {
     }
   }
 
-  console.log('this is ', allCasesArryOfSelectedSeries)
   var eachCaseArry = []
   for (var j in allCasesArryOfSelectedSeries) {
     eachCaseArry.push(allCasesArryOfSelectedSeries[j])
@@ -181,8 +181,6 @@ function showDetailDatas (eachCaseArry) {
   // var selectedSeriesName = seriesSelector.value
 
   var allCasesArryOfSelectedSeries = eachCaseArry
-  console.log(allCasesArryOfSelectedSeries)
-
   var selectedCaseDataArry
   for (var i in allCasesArryOfSelectedSeries) {
     var aCaseArry = allCasesArryOfSelectedSeries[i]
@@ -190,7 +188,6 @@ function showDetailDatas (eachCaseArry) {
       selectedCaseDataArry = aCaseArry.dataArry
     }
   }
-  // console.log(selectedCaseDataArry, 'dataDiv')
   var createdTable = createTable(selectedCaseDataArry, 'dataDiv')
   caseTableDiv.appendChild(createdTable)
 }
@@ -205,7 +202,6 @@ function createTable (arry, divId) {
     eachSituationDataTr.id = 'test' + i
     var eachVitalsDataArry = arry[i]
     var eachVitalsKeyArry = Object.keys(eachVitalsDataArry)
-    // console.log('eachvitals is 12 ', eachInputkey)
 
     for (var j in eachVitalsKeyArry) {
       var eachTd = document.createElement('td')
@@ -213,8 +209,6 @@ function createTable (arry, divId) {
       var eachVitals = eachVitalsDataArry[eachVitalsKeyArry[j]]
 
       eachInput.type = 'text'
-      // console.log('eachvitalskey is ', eachVitalsKeyArry[j])
-      // var eachInputkey = Object.keys(eachVitals)
       eachInput.className = eachVitalsKeyArry[j]
       eachInput.value = eachVitals
       eachInput.id = eachVitalsKeyArry[j] + i
@@ -233,8 +227,6 @@ function createTable (arry, divId) {
         }
       }
 
-      // console.log('classname is ', eachInput.className)
-      // console.log('eachInput is ', eachInput)
       if (eachInput.className !== 'slow_change') {
         eachTd.appendChild(eachInput)
         eachSituationDataTr.appendChild(eachTd)
@@ -256,7 +248,6 @@ function createTable (arry, divId) {
 
 function intoTheConsole (DOM) {
   var domid = DOM.id
-  // console.log('domid is', domid)
   var num = domid.split('applyButton')
   var datas = {}
   var elems = ['subtitle', 'hR', 'Af', 'rR', 'ataxia', 'spO2', 'sBP', 'dBP', 'time']
@@ -264,7 +255,6 @@ function intoTheConsole (DOM) {
   for (let i = 0; i < elems.length; i++) {
     var idelement = elems[i] + num[1]
     var targetElement = document.getElementById(idelement)
-    // console.log('targetElement is ', targetElement)
     if (targetElement.type === 'text') {
       datas[elems[i]] = targetElement.value
     } else {
@@ -276,16 +266,8 @@ function intoTheConsole (DOM) {
   datas['ataxia'] = (datas['ataxia'] === 'ataxia') ? 'true' : 'false'
   datas['slow_change'] = (datas['time'] === '0') ? 'false' : 'true'
 
-  // console.log('datas is ', datas)
   newchangeToStandbyVal(datas)
 }
-/*
-document.addEventListener('DOMContentLoaded', function () {
-  createSelectorWithJSON()
-  var DOM = document.getElementById('caseNoSorces')
-  showVital(DOM)
-}
-*/
 
 function deleteDB () {
   var deleteReq = indexedDB.deleteDatabase('VitalDB')

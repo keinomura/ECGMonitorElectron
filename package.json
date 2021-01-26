@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "electron": "^1.8.6",
-    "electron-builder": "^13.7.0",
+    "electron-builder": "^20.38.3",
     "nopt": "latest",
     "npm": "latest"
   }

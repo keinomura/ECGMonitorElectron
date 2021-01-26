@@ -30,3 +30,7 @@ function monitorClear(arg) {
 function displaySubWinVal (wavename, val) {
   ipcRenderer.send('displaySubWinVal', [wavename, val])
 }
+
+function donateWin (arg) {
+  ipcRenderer.send('openDonateWin', arg)
+}

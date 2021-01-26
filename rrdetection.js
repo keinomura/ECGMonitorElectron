@@ -28,7 +28,7 @@ function rrdetection (yVal, xVal) {
   if (myVal > cutpoint && rrDetection === true) {
     rrDetection = false
     rrTimeArray.push(Date.now())
-    console.log(rrTimeArray)
+    // console.log(rrTimeArray)
     displayrRAve()
   }
 }

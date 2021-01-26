@@ -51,7 +51,7 @@ function createsubWindow () {
   }
 
   // devTool
-  subWin.webContents.openDevTools()
+  // subWin.webContents.openDevTools()
 
   // when sub window is closed
   subWin.on('closed', function () {
@@ -87,6 +87,28 @@ function createdataWindow () {
 
 }
 */
+
+let donateWin
+
+function createdonateWindow () {
+  if (donateWin == null) {
+    // create sub Window
+    donateWin = new BrowserWindow({width: 800, height: 400})
+
+    // set sub window URL
+    donateWin.loadURL('https://www.patreon.com/keinom')
+  } else {
+    donateWin.show()
+  }
+
+  // devTool
+  // subWin.webContents.openDevTools()
+
+  // when sub window is closed
+  donateWin.on('closed', function () {
+    donateWin = null
+  })
+}
 
 //  when finished init
 // create two windows at start
@@ -139,6 +161,11 @@ ipcMain.on('monitorClear', (event, arg) => {
 ipcMain.on('displaySubWinVal', (event, arg) => {
   subWin.webContents.send('displaySubWinVal', arg)
 })
+
+ipcMain.on('openDonateWin', (event, arg) => {
+  createdonateWindow()
+})
+
 /// /////////////////
 // application menu
 
